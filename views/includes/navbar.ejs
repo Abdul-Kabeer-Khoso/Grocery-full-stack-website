@@ -1,0 +1,116 @@
+
+    
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        .navbarHeader{
+            height: 35px;
+            padding: 1vw 9vw;
+            /* background-color: orange; */
+            border-bottom: 1px solid grey;
+            font-family: "Varela Round", sans-serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logoName{
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .logoNameFirstLetter{
+            font-size: 26px;
+            font-weight: 700;
+            color: #4fbf8b;
+        }
+        .navLinks-searchBar{
+            width: 57%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navLoginDetails{
+            width: 30px;
+            height: 30px;
+            background-color: rgb(175, 175, 175);;
+            border-radius: 50%;
+        }
+        .navLinks a{
+            color: rgb(46, 46, 46);
+            text-decoration: none;
+            margin-left: 10px;
+            font-size: 15px;
+        }
+        .navLinks, .navSearch{
+            display: flex;
+            align-items: center;
+        }
+
+        .navSearch input{
+            width: 180px;
+            padding: 5px 28px 5px 10px;
+            border-radius: 15px;
+            border: 1px solid rgb(187, 185, 185);
+            font-family: "Varela Round", sans-serif;
+        }
+
+        .navSearch{
+            position: relative;
+        }
+
+        .navSearch i{
+            color: rgb(175, 175, 175);
+            position: absolute;
+            right: 8px;
+            z-index: 3;
+        }
+        .navCart i{
+            color:rgb(175, 175, 175);
+        }
+
+
+        .navLinks a:hover{
+            cursor: pointer;
+            color: rgb(24, 24, 24);
+        }     
+        
+        .navSearch i:hover{
+            cursor: pointer;
+            color: rgb(71, 71, 71);
+        }
+
+        .navCart i:hover{
+            cursor: pointer;
+            color:rgb(71,71,71);
+        }
+
+    </style>
+<body>
+    <header class="navbarHeader">
+        <div class="navLogo">
+        <p class="logoName"><span class="logoNameFirstLetter">G</span>rocify</p>
+        </div>
+
+        <div class="navLinks-searchBar">
+            <div class="navLinks">
+                <a href="#">Home</a>
+                <a href="#">All Products</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="navSearch">
+                <input type="text" placeholder="Search products">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            
+            <div class="navCart">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+
+            <div class="navLoginDetails">
+            </div>
+
+        </div>
+
+    </header>
+</body>

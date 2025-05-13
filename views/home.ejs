@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocify</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/public/css/homeStyle.css">
+    
+</head>
+<body>
+        <!-- Navbar -->
+        <%- include("includes/navbar.ejs")%>
+
+        <main class="homeMainSection">
+            
+            <div class="imageBox">
+
+                <img src='https://www.shutterstock.com/image-photo/healthy-food-background-paper-bag-600nw-2480784073.jpg'>
+
+            </div>
+
+                <div class="imageBoxText-and-Btn">
+                    <h1>Freshness You Can Trust, Savings You will Love!</h1>
+                    <div class="imageBoxButton">
+                        <button class="shopNowBtn">Shop now</button>
+                        <button class="exploreBtn"><span>Explore deals </span> <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="categoryBox">
+                    <h2>Categories</h2>
+                    <div class="categories">
+
+                        <div class="category">
+                            <img src="https://greencart-gs.vercel.app/assets/organic_vegitable_image-B6WcGgPL.png">
+                            <p>Organic Veggies</p>
+                        </div>
+
+                         <div class="category">
+                            <img src="https://greencart-gs.vercel.app/assets/fresh_fruits_image-GVwDikkj.png">
+                            <p>Fresh Fruits</p>
+                        </div>
+
+                         <div class="category">
+                            <img src="https://greencart-gs.vercel.app/assets/bottles_image-DMalNkiM.png">
+                            <p>Cold Drinks</p>
+                        </div>
+
+                         <div class="category">
+                            <img src="https://greencart-gs.vercel.app/assets/maggi_image-DD7JXh5a.png">
+                            <p>Instant Food</p>
+                        </div>
+
+                         <div class="category">
+                            <img src="https://greencart-gs.vercel.app/assets/bakery_image-e5rU_kNe.png">
+                            <p>Bakery & Breads</p>
+                        </div>
+
+                         <div class="category">
+                            <img src="https://greencart-gs.vercel.app/assets/grain_image-BkT7wje5.png">
+                            <p>Grain & Cereals</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bestSellers">
+                    <h2>Best Sellers</h2>
+                    <div class="bestSellingProductsBox">
+
+                        <div class="bestSellingProduct">
+                            <img src="https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/vy1xa7zovcu22smzapzv.png">
+                            <p class="bestSellingProductType">Bakery</p>
+                            <p class="bestSellingProductName">Brown Bread 400g</p>
+                            <div class="price-and-btn">
+
+                                <div class="price">
+                                <p class="bestSellingProductPrice">$40</p>
+                                <p class="bestSellingProductOldPrice">$50</p>
+                                </div>
+
+                                <div class="buttons">
+                                    <button class="AddButton"><i class="fa-solid fa-cart-shopping" style="color: #2f7052;"></i> <span>Add </span></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bestSellingProduct">
+                            <img src="https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/cxrrgnf12xuhkr4dyhi2.png">
+                            <p class="bestSellingProductType">Grain</p>
+                            <p class="bestSellingProductName">Organic Quina 5..</p>
+                            <div class="price-and-btn">
+
+                                <div class="price">
+                                <p class="bestSellingProductPrice">$420</p>
+                                <p class="bestSellingProductOldPrice">$450</p>
+                                </div>
+
+                                <div class="buttons">
+                                    <button class="AddButton"><i class="fa-solid fa-cart-shopping" style="color: #2f7052;"></i> <span>Add </span></button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="bestSellingProduct">
+                            <img src="https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/ceqgisupuizyste9aifg.png">
+                            <p class="bestSellingProductType">Vegetables</p>
+                            <p class="bestSellingProductName">Carrot 500g</p>
+                            <div class="price-and-btn">
+
+                                <div class="price">
+                                <p class="bestSellingProductPrice">$44</p>
+                                <p class="bestSellingProductOldPrice">$50</p>
+                                </div>
+
+                                <div class="buttons">
+                                    <button class="AddButton"><i class="fa-solid fa-cart-shopping" style="color: #2f7052;"></i> <span>Add </span></button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="bestSellingProduct">
+                            <img src="https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/pjt1y6xdo46tluemhf0o.png">
+                            <p class="bestSellingProductType">Fruits</p>
+                            <p class="bestSellingProductName">Apple 1kg</p>
+                            <div class="price-and-btn">
+
+                                <div class="price">
+                                <p class="bestSellingProductPrice">$90</p>
+                                <p class="bestSellingProductOldPrice">$100</p>
+                                </div>
+
+                                <div class="buttons">
+                                    <button class="AddButton"><i class="fa-solid fa-cart-shopping" style="color: #2f7052;"></i> <span>Add </span></button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                          <div class="bestSellingProduct">
+                            <img src="https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/gek3mmiig3lixlkpxks8.png">
+                            <p class="bestSellingProductType">Dairy</p>
+                            <p class="bestSellingProductName">Cheese 200g</p>
+                            <div class="price-and-btn">
+
+                                <div class="price">
+                                <p class="bestSellingProductPrice">$90</p>
+                                <p class="bestSellingProductOldPrice">$100</p>
+                                </div>
+
+                                <div class="buttons">
+                                    <button class="AddButton"><i class="fa-solid fa-cart-shopping" style="color: #2f7052;"></i> <span>Add </span></button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="marketingImageSection">
+                    <div class="marketingImageBox">
+                    <img src="https://greencart-gs.vercel.app/assets/bottom_banner_image-DdX_9fDq.png">
+                    </div>
+
+                    <div class="marketingDetailsBox">
+                        <h1>Why We Are the Best?</h1>
+                        
+                        <div class="detail1 marketingDetail">
+                            <div class="detailIcon"><i class="fa-solid fa-truck fa-xl" style="color: white"></i></div>
+                            <div class="detailText">
+                                <p class="detailTextHeading">Fastest Delivery</p>
+                                <p class="detailTextDescription">Groceries delivered in under 30 minutes.</p>
+                            </div>
+                        </div>
+
+                        <div class="detail2 marketingDetail">
+                            <div class="detailIcon"><i class="fa-solid fa-leaf fa-xl" style="color: white"></i></div>
+                            <div class="detailText">
+                                <p class="detailTextHeading">Freshness Guaranteed</p>
+                                <p class="detailTextDescription">Fresh produce straight from the source</p>
+                            </div>
+                        </div>
+
+                        <div class="detail3 marketingDetail">
+                            <div class="detailIcon"><i class="fa-solid fa-coins fa-xl" style="color: white"></i></div>
+                            <div class="detailText">
+                                <p class="detailTextHeading">Affordable Prices</p>
+                                <p class="detailTextDescription">Quality groceries at unbeatable prices.</p>
+                            </div>
+                        </div>
+
+                        <div class="detail4 marketingDetail">
+                            <div class="detailIcon"><i class="fa-solid fa-heart fa-xl" style="color: white"></i></div>
+                            <div class="detailText">
+                                <p class="detailTextHeading">Trusted by Thousands</p>
+                                <p class="detailTextDescription">Loved by 10,000+ happy customers.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="emailSubscription">
+                    <h1>Never Miss a Deal!</h1>
+                    <p>Subscribe to get the latest offers, new arrivals, and exclusive discounts</p>
+                    <div class="emailInput-and-btn">
+                        <input type="email" placeholder="Enter your email id">
+                        <button>Subscribe</button>
+                    </div>
+                </div>
+
+                
+
+        </main>
+</body>
+</html>
