@@ -3,7 +3,7 @@ body{
         padding-right: 9vw;
 }
 .homeMainSection{
-    width: 100vw;
+    width: 100%;
     height: auto;
     margin-top: 3vw;
     font-family: "Varela Round", sans-serif;
@@ -93,11 +93,11 @@ body{
 .categories{
     display: grid;
     gap: 1.5vw;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
 }
 
 .category{
-    width: 140px;
+    width: 130px;
     height: auto;
     overflow: hidden;
     background-color: pink;
