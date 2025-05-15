@@ -329,6 +329,29 @@ p{
     font-size: 20px;
 }
 
+
+/* Related Product */
+.relatedProductsBox{
+    font-family:  "Varela Round", sans-serif;
+    padding: 0vw 9vw;
+    margin: 3vw 0vw;
+}
+
+.relatedProductTitle{
+    margin-bottom: 4vw;
+    color: rgb(129, 129, 129);
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.relatedProducts{
+    display: grid;
+    gap: 1.5vw;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    margin-bottom: 12vw;
+}
+
+
 /* Hover effects */
 button:hover{
     cursor: pointer;

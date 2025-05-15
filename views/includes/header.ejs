@@ -68,6 +68,25 @@
         .navCart i{
             color:rgb(175, 175, 175);
         }
+        .navCart{
+            position: relative;
+        }
+        .cartItems{
+            position: absolute;
+            min-width: 13px;
+            height: auto;
+            aspect-ratio: 1/1;
+            padding: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #4fbf8b;
+            border-radius: 50%;
+            left: 0.7vw;
+            bottom: 1vw;
+            color: white;
+            font-size: 12px;
+        }
 
 
         .navLinks a:hover{
@@ -94,7 +113,7 @@
 
         <div class="navLinks-searchBar">
             <div class="navLinks">
-                <a href="#">Home</a>
+                <a href="/product">Home</a>
                 <a href="#">All Products</a>
                 <a href="#">Contact</a>
             </div>
@@ -105,12 +124,18 @@
             
             <div class="navCart">
                 <i class="fa-solid fa-cart-shopping"></i>
+                <div class="cartItems">
+                    <p class="cartItemsNumber">0</p>
+                </div>
             </div>
+
+            
 
             <div class="navLoginDetails">
             </div>
 
         </div>
+
 
     </header>
 </body>

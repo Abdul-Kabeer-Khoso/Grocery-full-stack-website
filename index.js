@@ -10,8 +10,12 @@ app.use('/public', express.static(path.join(__dirname, "public")));
 
 
 
-app.get("/home", (req, res)=>{
-    res.render('home.ejs');
+app.get("/product", (req, res)=>{
+    res.render('Products.ejs');
+});
+
+app.get("/product/:id", (req, res)=>{
+    res.render("relatedProducts.ejs");
 })
 
 app.listen(8080, ()=>{
