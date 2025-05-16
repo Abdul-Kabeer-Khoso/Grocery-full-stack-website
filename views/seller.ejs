@@ -111,7 +111,75 @@
             </div>
 
             <div class="opt2Box optBox">
-                <h3>Opt 2 Selected</h3>
+                <p>All Product</p>
+                <br>
+                <div class="allProducts">
+                    <table>
+
+                        <thead>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Selling Price</th>
+                            <th>In Stock</th>
+                        </thead>
+
+                        <tr>
+                            <td>
+                               <div class="product">
+
+                                <div class="productImage"><img src="https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/vy1xa7zovcu22smzapzv.png"></div>
+                                <p class="productName">Brown Bread 400g</p>
+                                </div> 
+
+                            </td>
+
+                            <td>
+                                <p>Bakery</p>
+                            </td>
+                            
+                            <td>
+                                <p>$35</p>
+                            </td>
+
+                            <td>
+                                <div class="inStockBtn">
+                                    <div class="btnCircle">
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                         <tr>
+                            <td>
+                               <div class="product">
+
+                                <div class="productImage"><img src="https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/vy1xa7zovcu22smzapzv.png"></div>
+                                <p class="productName">Brown Bread 400g</p>
+                                </div> 
+
+                            </td>
+
+                            <td>
+                                <p>Bakery</p>
+                            </td>
+                            
+                            <td>
+                                <p>$35</p>
+                            </td>
+
+                            <td>
+                                <div class="inStockBtn">
+                                    <div class="btnCircle">
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
             </div>
 
             <div class="opt3Box optBox">
@@ -163,6 +231,27 @@
                 }
             })
         })
+
+
+        //Switch on off button logic
+        let inStockBtn = document.getElementsByClassName('inStockBtn');
+        let inStock = true;
+        Array.from(inStockBtn).forEach((stockBtn)=>{
+            let stockBtnCircle = stockBtn.children[0];
+            stockBtn.addEventListener('click', ()=>{
+            if(inStock===true){
+                stockBtn.style.backgroundColor="grey";
+                stockBtnCircle.style.right="2vw";
+                inStock=false;
+            }
+            else if(inStock===false){
+                stockBtn.style.backgroundColor="rgb(87, 87, 255)";
+                stockBtnCircle.style.right="0.28vw";
+                inStock=true;
+            }
+        })
+        })
+       
     </script>    
 
 </body>

@@ -139,6 +139,87 @@ label p{
     margin-top: 20px;
 }
 
+/* Option2 Box */
+table{
+    width: 80%;
+    text-align: left;
+    border-collapse: collapse;
+    border: 0.5px solid rgb(197, 197, 197);
+    margin-bottom: 20px;
+    border-radius: 0.5vw;
+    padding: 1vw;
+    overflow: hidden;
+
+}
+
+th, td{
+    padding: 1vw;
+}
+
+thead th{
+    border-bottom: 1px solid rgb(197, 197, 197);
+}
+
+thead{
+    border-top: 1px dotted black;
+}
+
+td{
+    padding: 1vw;
+    border-bottom:  0.5px solid rgb(197, 197, 197);
+}
+
+
+
+table .product{
+    display: flex;
+    align-items: center;
+}
+
+
+
+.product p{
+    margin-left: 10px;
+}
+
+.product .productImage{
+    width: 4vw;
+    height: 4vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid rgb(197,197,197);
+    border-radius: 3px;
+}
+
+
+.productImage img{
+    width: 40px;
+    height: auto;
+    aspect-ratio: 1/1;
+}
+
+/* Turn on off button */
+.inStockBtn{
+    width: 3.5vw;
+    height: auto;
+    aspect-ratio: 1/0.5;
+    background-color: rgb(87, 87, 255);
+    border-radius: 4vw;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.btnCircle{
+    width: 35%;
+    height: 70%;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    right: 0.28vw;
+}
+
 
 /* Hover effects */
 .opt:hover{
@@ -151,5 +232,9 @@ label:hover{
 }
 
 .productAddBtn:hover{
+    cursor: pointer;
+}
+
+.inStockBtn:hover{
     cursor: pointer;
 }
