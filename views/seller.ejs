@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Grocify</title>
+    <link rel="stylesheet" href="../public/css/sellerStyle.css">
+</head>
+<body>
+    <%-include('includes/sellerHeader.ejs')%>
+
+    <div class="mainBox">
+
+        <div class="leftBox">
+            
+            <div class="opt1 opt">
+                <i class="fa-regular fa-square-plus fa-lg"></i>
+                <p>Add Product</p>
+            </div>
+
+            <div class="opt2 opt">
+                <i class="fa-solid fa-list fa-lg"></i>
+                <p>Product List</p>
+            </div>
+
+            <div class="opt3 opt">
+                <i class="fa-regular fa-square-check fa-lg"></i>
+                <p>Orders</p>
+            </div>
+
+        </div>
+
+        <div class="rightBox">
+            <div class="opt1Box optBox">
+                <p>Product Image</p>
+
+                <div class="imageInputBox">
+                <input type="file" id="fileInput" style="display:none;">
+                <label for="fileInput">
+                    <img src="https://www.pngplay.com/wp-content/uploads/8/Upload-Icon-Logo-Transparent-Free-PNG.png" class="uploadImage">
+                    <p>Upload</p>
+                </label>
+
+                 <input type="file" id="fileInput" style="display:none;">
+                <label for="fileInput">
+                    <img src="https://www.pngplay.com/wp-content/uploads/8/Upload-Icon-Logo-Transparent-Free-PNG.png" class="uploadImage">
+                    <p>Upload</p>
+                </label>
+
+
+                 <input type="file" id="fileInput" style="display:none;">
+                <label for="fileInput">
+                    <img src="https://www.pngplay.com/wp-content/uploads/8/Upload-Icon-Logo-Transparent-Free-PNG.png" class="uploadImage">
+                    <p>Upload</p>
+                </label>
+
+
+                 <input type="file" id="fileInput" style="display:none;">
+                <label for="fileInput">
+                    <img src="https://www.pngplay.com/wp-content/uploads/8/Upload-Icon-Logo-Transparent-Free-PNG.png" class="uploadImage">
+                    <p>Upload</p>
+                </label>
+                </div>
+
+                <br>
+
+                <p>Product Name</p>
+
+                <input type="text" placeholder="Type here" class="productInputs">
+
+                <br>
+
+                <p>Product Description</p>
+
+                <textarea placeholder="Type here" class="productInputs productDescrptionInput" cols="35"></textarea>
+
+                <br>
+
+                <p>Category</p>
+
+                <select class="productInputs productCategoryInput">
+                    <option>Vegetables</option>
+                    <option>Fruits</option>
+                    <option>Drinks</option>
+                    <option>Instant</option>
+                    <option>Dairy</option>
+                    <option>Bakery</option>
+                    <option>Grain</option>
+                </select>
+
+                <div class="productPrices">
+
+                    <div class="newPrice">
+                    <p>New Price</p>
+                    <input type="number" placeholder="0">
+                    </div>
+
+                    <div class="oldPrice">
+                    <p>Old Price</p>
+                    <input type="number" placeholder="0">
+                    </div>
+
+                </div>
+
+                <button class="productAddBtn">Add</button>
+
+            </div>
+
+            <div class="opt2Box optBox">
+                <h3>Opt 2 Selected</h3>
+            </div>
+
+            <div class="opt3Box optBox">
+                <h3>Opt 3 Selected</h3>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Script Code -->
+    <script>
+        let options = document.getElementsByClassName('opt');
+        let optionsBox = document.getElementsByClassName('optBox');
+        Array.from(options).forEach((option) =>{
+            option.addEventListener('click', (val, idx)=>{
+                Array.from(options).forEach((myStyleOpt)=>{
+                    myStyleOpt.style.backgroundColor="white";
+                    myStyleOpt.style.border="none";
+                })
+                option.style.backgroundColor="#4fbf8b27";
+                option.style.borderRight="6px solid #4fbf8b";
+                if(option.classList.value=='opt1 opt'){
+                    Array.from(optionsBox).forEach((optBox)=>{
+                        if(optBox.classList.value=='opt1Box optBox'){
+                            optBox.style.display="inline-block";
+                        }else{
+                            optBox.style.display='none';
+                        }
+                    })
+                }
+                else if(option.classList.value=='opt2 opt'){
+                    Array.from(optionsBox).forEach((optBox)=>{
+                        if(optBox.classList.value=='opt2Box optBox'){
+                            optBox.style.display="inline-block";
+                        }else{
+                            optBox.style.display="none";
+                        }
+                    })
+                }
+                else if(option.classList.value=='opt3 opt'){
+                    Array.from(optionsBox).forEach((optBox)=>{
+                        if(optBox.classList.value=='opt3Box optBox'){
+                            optBox.style.display="inline-block";
+                        }else{
+                            optBox.style.display="none";
+                        }
+                    })   
+                }
+            })
+        })
+    </script>    
+
+</body>
+</html>

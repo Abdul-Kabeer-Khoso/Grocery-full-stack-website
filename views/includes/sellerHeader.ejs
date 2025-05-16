@@ -1,0 +1,76 @@
+
+    
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        .navbarHeader{
+            height: 30px;
+            padding: 1vw 9vw;
+            /* background-color: orange; */
+            border-bottom: 1px solid rgb(197, 197, 197);
+            font-family: "Varela Round", sans-serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logoName{
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .logoNameFirstLetter{
+            font-size: 26px;
+            font-weight: 700;
+            color: #4fbf8b;
+        }
+        .navLinks{
+            display: flex;
+            align-items: center;
+        }
+        
+        .logoutBtn{
+            height: 23px;
+            width: 75px;
+            font-family: "Varela Round", sans-serif;
+            border-radius: 12px;
+            background-color: none;
+            border: 0.5px solid grey;
+            transition-property: all;
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in-out;
+        }
+
+
+        .logoutBtn:hover{
+            cursor: pointer;
+            background-color: rgb(63, 63, 63);
+            color: white;
+            height: 25px;
+            width: 82px;
+            border-radius: 14px;
+        }
+
+        
+
+
+    </style>
+<body>
+    <header class="navbarHeader">
+        <div class="navLogo">
+        <p class="logoName"><span class="logoNameFirstLetter">G</span>rocify</p>
+        </div>
+
+            <div class="navLinks">
+                <p>Hi, Admin</p>
+                &nbsp; &nbsp; &nbsp;
+                <form>
+                    <button class="logoutBtn">Logout</button>
+                </form>
+                
+            </div>
+
+
+
+    </header>
+</body>

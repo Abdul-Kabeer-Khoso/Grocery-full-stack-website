@@ -202,8 +202,8 @@ p{
 }
 
 .AddButton{
-    width: 70px;
-    height: 35px;
+    width: 60px;
+    height: 30px;
     background-color: #ade0c9;
     border-radius: 4px;
     border: 0.5px solid #62aa89;
@@ -334,12 +334,13 @@ p{
 .relatedProductsBox{
     font-family:  "Varela Round", sans-serif;
     padding: 0vw 9vw;
-    margin: 3vw 0vw;
+    margin-top: 7vw;
+    margin-bottom: 4vw;
 }
 
 .relatedProductTitle{
-    margin-bottom: 4vw;
-    color: rgb(129, 129, 129);
+    margin-bottom: 2vw;
+    color: rgb(7, 7, 7);
     font-size: 25px;
     font-weight: 600;
 }
