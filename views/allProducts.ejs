@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../public/css/homeStyle.css">
+    <title>Grocify</title>
+</head>
+<body>
+
+    <%- include('includes/header.ejs')%>
+
+    <main class="homeMainSection allProductMainSection">
+
+        <p class="sectionTitle">ALL PRODUCTS</p>
+
+        <div class="showProductsBox">
+                <% for(let product of products) { %>
+                <div class="bestSellingProduct">
+                            <img src="<%=product.productImage1%>">
+                            <p class="bestSellingProductType"><%=product.productCategory%></p>
+                            <p class="bestSellingProductName"><%=product.productName%></p>
+                            <div class="price-and-btn">
+
+                                <div class="price">
+                                <p class="bestSellingProductPrice">$<%=product.newPrice%></p>
+                                <p class="bestSellingProductOldPrice">$<%=product.oldPrice%></p>
+                                </div>
+
+                                <div class="buttons">
+                                    <button class="AddButton"><i class="fa-solid fa-cart-shopping" style="color: #2f7052;"></i> <span>Add </span></button>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+
+        </div>
+    
+    </main>    
+
+    <%- include('includes/footer.ejs')%>
+
+</body>
+</html>

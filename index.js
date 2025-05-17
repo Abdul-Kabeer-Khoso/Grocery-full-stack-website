@@ -25,17 +25,35 @@ const connection = mysql.createConnection({
     password: 'admin123'
 })
 
+
 //Home Page
 app.get("/product", (req, res)=>{
     res.render('Products.ejs');
 });
+
+//show all products
+app.get("/product/all", (req, res)=>{
+    let showProductQuery = 'select * from Products';
+    try{
+        connection.query(showProductQuery, (err, result)=>{
+            let products = result;
+            if(err){
+                res.send(err);
+            } else{
+                res.render('allProducts.ejs', {products});
+            }
+        })
+    }catch(err){
+        res.send(err);
+    }
+})
 
 //Product
 app.get("/product/:id", (req, res)=>{
     res.render("relatedProducts.ejs");
 })
 
-//Seller
+//Show Seller Products
 app.get("/seller", (req, res)=>{
     let allProducts = 'select * from Products';
     try{
@@ -48,6 +66,8 @@ app.get("/seller", (req, res)=>{
 
 })
 
+
+//Add Product
 app.post("/seller/add", (req, res)=>{
     let {product} = req.body;
     let productId = uuidv4();

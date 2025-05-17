@@ -145,6 +145,7 @@ label p{
 }
 
 /* Option2 Box */
+
 table{
     width: 80%;
     text-align: left;
@@ -163,6 +164,8 @@ th, td{
 
 thead th{
     border-bottom: 1px solid rgb(197, 197, 197);
+    font-size: 15px; 
+    font-weight: 500;
 }
 
 thead{
@@ -202,6 +205,11 @@ table .product{
     width: 40px;
     height: auto;
     aspect-ratio: 1/1;
+}
+
+.allProductText{
+    font-size: 22px;
+    font-weight: 800;
 }
 
 /* Turn on off button */
