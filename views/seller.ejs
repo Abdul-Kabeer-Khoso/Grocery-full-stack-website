@@ -36,9 +36,10 @@
 
         <div class="rightBox">
             <div class="opt1Box optBox">
+                <form method="POST" action="/seller/add">
                 <p>Product Image</p>
 
-                <div class="imageInputBox">
+                <!-- <div class="imageInputBox">
                 <input type="file" id="fileInput" style="display:none;">
                 <label for="fileInput">
                     <img src="https://www.pngplay.com/wp-content/uploads/8/Upload-Icon-Logo-Transparent-Free-PNG.png" class="uploadImage">
@@ -64,49 +65,61 @@
                     <img src="https://www.pngplay.com/wp-content/uploads/8/Upload-Icon-Logo-Transparent-Free-PNG.png" class="uploadImage">
                     <p>Upload</p>
                 </label>
+                </div> -->
+
+                <div class="imageInputs">
+
+                <input type="text" placeholder="Image1 URL" class="productInputs" name="product[image1URL]"required>
+                    <br>
+                <input type="text" placeholder="Image2 URL" class="productInputs" name="product[image2URL]">
+                    <br>
+                <input type="text" placeholder="Image3 URL" class="productInputs" name="product[image3URL]">
+                    <br>
+                <input type="text" placeholder="Image4 URL" class="productInputs" name="product[image4URL]">
                 </div>
 
                 <br>
 
                 <p>Product Name</p>
 
-                <input type="text" placeholder="Type here" class="productInputs">
+                <input type="text" placeholder="Type here" class="productInputs" required name="product[productName]">
 
                 <br>
 
                 <p>Product Description</p>
 
-                <textarea placeholder="Type here" class="productInputs productDescrptionInput" cols="35"></textarea>
+                <textarea placeholder="Type here" class="productInputs productDescrptionInput" required name="product[productDescription]"></textarea>
 
                 <br>
 
                 <p>Category</p>
 
-                <select class="productInputs productCategoryInput">
+                <select class="productInputs productCategoryInput" required name="product[productCategory]">
                     <option>Vegetables</option>
                     <option>Fruits</option>
                     <option>Drinks</option>
                     <option>Instant</option>
                     <option>Dairy</option>
                     <option>Bakery</option>
-                    <option>Grain</option>
+                    <option>Grains</option>
                 </select>
 
                 <div class="productPrices">
 
                     <div class="newPrice">
                     <p>New Price</p>
-                    <input type="number" placeholder="0">
+                    <input type="number" placeholder="0" required name="product[productNewPrice]">
                     </div>
 
                     <div class="oldPrice">
                     <p>Old Price</p>
-                    <input type="number" placeholder="0">
+                    <input type="number" placeholder="0" required name="product[productOldPrice]">
                     </div>
 
                 </div>
 
                 <button class="productAddBtn">Add</button>
+                </form>
 
             </div>
 
@@ -123,22 +136,24 @@
                             <th>In Stock</th>
                         </thead>
 
+                        <% for(product of result) {%>  
+
                         <tr>
                             <td>
                                <div class="product">
 
-                                <div class="productImage"><img src="https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/vy1xa7zovcu22smzapzv.png"></div>
-                                <p class="productName">Brown Bread 400g</p>
+                                <div class="productImage"><img src= "<%=product.productImage1%>" alt="productImage"></div>
+                                <p class="productName"><%=product.productName%></p>
                                 </div> 
 
                             </td>
 
                             <td>
-                                <p>Bakery</p>
+                                <p><%=product.productCategory%></p>
                             </td>
                             
                             <td>
-                                <p>$35</p>
+                                <p><b>$</b><%=product.newPrice%></p>
                             </td>
 
                             <td>
@@ -150,34 +165,9 @@
                             </td>
 
                         </tr>
+                        
+                        <% } %>  
 
-                         <tr>
-                            <td>
-                               <div class="product">
-
-                                <div class="productImage"><img src="https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/vy1xa7zovcu22smzapzv.png"></div>
-                                <p class="productName">Brown Bread 400g</p>
-                                </div> 
-
-                            </td>
-
-                            <td>
-                                <p>Bakery</p>
-                            </td>
-                            
-                            <td>
-                                <p>$35</p>
-                            </td>
-
-                            <td>
-                                <div class="inStockBtn">
-                                    <div class="btnCircle">
-
-                                    </div>
-                                </div>
-                            </td>
-
-                        </tr>
                     </table>
                 </div>
             </div>
