@@ -375,6 +375,143 @@ p{
     grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
 }
 
+.showProductsBox a{
+    text-decoration: none;
+}
+
+/* Product Details */
+
+.productDetailsMainSection{
+    width: 100%;
+}
+
+.pathText{
+    width: 82%;
+    font-size: 14px;
+    color: rgb(66, 66, 66);
+}
+
+.pathProductName{
+    color:  #4fbf8b;
+}
+
+.details{
+    width: 82%;
+    margin: 1vw 0 6vw 0;
+    display: flex;
+}
+
+.productMultipleImages{
+    width: 8%;
+    height: auto;
+}
+
+.productimg{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    border: 0.5px solid rgb(197, 197, 197);
+    border-radius: 0.3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.productimg img{
+    width: 90%;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.showProductImage{
+    width: 35%;
+    height: auto;
+    aspect-ratio: 1/1;
+    border: 0.5px solid rgb(197, 197, 197);
+    border-radius: 0.3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-left: 1vw;
+}
+
+.showProductImage img{
+    width: 80%;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.detailsText{
+    width: 45%;
+    margin-left: 3vw;
+}
+
+.detailsText h2{
+    color: #364153;
+    font-size: 2vw;
+    margin-bottom: 0.5vw;
+}
+
+.reviews{
+    color: #364153;
+    margin-bottom: 1.7vw;
+}
+
+.mrpOldPrice, .taxText, .productDescriptionText{
+    color: #6a7282ad
+}
+
+.mrpOldPrice{
+    font-size: 14px;
+    text-decoration: line-through;
+}
+
+.taxText, .productDescriptionText{
+    font-size: 14px;
+}
+
+.productDescriptionText{
+    width: 170px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+
+.mrpNewPrice{
+    color: #364153de;
+    font-size: 1.7vw;
+    font-weight: 600;
+    margin: 3px 0px 3px 0px;
+}
+
+.aboutProductHeading{
+    font-size: 15px;
+    color: #364153;
+    font-weight: 600;
+}
+
+.detailsBtns button{
+    width: 35%;
+    height: auto;
+    aspect-ratio: 1/0.3;
+    border-radius: 3px;
+    border: none;
+    font-family:"Varela Round", sans-serif;
+    font-weight: 600; 
+}
+
+.addToCartBtn{
+    color: #364153;
+}
+
+.buyNowBtn{
+    background-color:  #4fbf8b;
+    color: white;
+    margin-left: 10px;
+}
 
 /* Hover effects */
 button:hover{

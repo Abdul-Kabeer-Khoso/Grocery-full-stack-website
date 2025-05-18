@@ -50,7 +50,20 @@ app.get("/product/all", (req, res)=>{
 
 //Product
 app.get("/product/:id", (req, res)=>{
-    res.render("relatedProducts.ejs");
+    let {id}= req.params;
+    let findProductQuery = `select * from Products where productId = "${id.toString()}"`;
+    try{
+        connection.query(findProductQuery, (err, result)=>{
+            if(err){
+                res.send(err);
+            }else{
+                let product = result[0];
+                res.render('productDetails.ejs', {product});
+            }
+        })
+    } catch(err){
+        res.send(err);
+    }
 })
 
 //Show Seller Products
