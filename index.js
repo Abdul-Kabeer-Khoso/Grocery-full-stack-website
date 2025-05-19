@@ -48,19 +48,23 @@ app.get("/product/all", (req, res)=>{
     }
 })
 
-//Product
-app.get("/product/:id", (req, res)=>{
+// Details of Product
+app.get("/product/:id", async (req, res)=>{
     let {id}= req.params;
     let findProductQuery = `select * from Products where productId = "${id.toString()}"`;
+    let findRelatedProductsQuery = 'select * from Products where productCategory = ?'
     try{
-        connection.query(findProductQuery, (err, result)=>{
-            if(err){
-                res.send(err);
-            }else{
-                let product = result[0];
-                res.render('productDetails.ejs', {product});
-            }
-        })
+        let productDetails =await connection.promise().query(findProductQuery);
+        let myProductDetails = productDetails[0][0];
+        let relatedProducts = await connection.promise().query(findRelatedProductsQuery, [myProductDetails.productCategory]);
+        let myRelatedProducts = relatedProducts[0];
+        if(productDetails && relatedProducts){
+            res.render('productDetails.ejs', {product: myProductDetails, relatedProducts: myRelatedProducts})
+        }
+        else{
+            res.send("There is something error in logic");
+        }
+
     } catch(err){
         res.send(err);
     }

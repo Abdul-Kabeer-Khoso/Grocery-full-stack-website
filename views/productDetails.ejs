@@ -46,6 +46,36 @@
 
         </div>
 
+        <h2 class="relatedProductText">Related Products</h2>
+        <hr  class="relatedProductTextUnderline">
+
+        <!-- Related Products -->
+
+        <div class="showProductsBox relatedProductsBox">
+                <% for(let product of relatedProducts) { %>
+                <a href='/product/<%= product.productId %>'>
+                <div class="bestSellingProduct">
+                            <img src="<%=product.productImage1%>">
+                            <p class="bestSellingProductType"><%=product.productCategory%></p>
+                            <p class="bestSellingProductName"><%=product.productName%></p>
+                            <div class="price-and-btn">
+
+                                <div class="price">
+                                <p class="bestSellingProductPrice">$<%=product.newPrice%></p>
+                                <p class="bestSellingProductOldPrice">$<%=product.oldPrice%></p>
+                                </div>
+
+                                <div class="buttons">
+                                    <button class="AddButton"><i class="fa-solid fa-cart-shopping" style="color: #2f7052;"></i> <span>Add </span></button>
+                                </div>
+                            </div>
+                        </div> 
+                        </a>
+                    <% } %>
+
+        </div>
+
+
     </main>
 
     <%- include('includes/footer.ejs')%>
