@@ -48,6 +48,11 @@ app.get("/product/all", (req, res)=>{
     }
 })
 
+//Show Cart 
+app.get("/product/cart", (req, res)=>{
+    res.render('cart.ejs');
+})
+
 // Details of Product
 app.get("/product/:id", async (req, res)=>{
     let {id}= req.params;

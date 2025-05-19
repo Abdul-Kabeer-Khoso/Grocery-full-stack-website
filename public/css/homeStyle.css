@@ -530,6 +530,134 @@ p{
     margin: 0 0 4vw 0;
 }
 
+/* Cart Section */
+.cartMainSection{
+    width: 82%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom:70px;
+}
+
+.cartSectionBox1{
+    width: 65%;
+    height: auto;
+}
+
+.cartSectionBox2{
+    background-color: green;
+    width: 33%;
+    height: auto;
+}
+
+.shoppingCartText{
+    margin-bottom: 20px;
+}
+
+.shoppingCartText h2{
+    font-size: 2.1vw;
+    color: #364153;
+    display: inline;
+}
+
+.shoppingCartText .itemsNumberInCart{
+    font-size: 14px;
+    color: #4fbf8b;
+    margin-left: 7px;
+    font-weight: 600;
+}
+
+/* Cart Table */
+.cartTable{
+    width: 100%;
+}
+
+.cartTableHeading{
+    text-align: left;
+    color: #364153;
+    font-size: 15px;
+    height: 40px;
+}
+
+.th1{
+    width: 60%;
+}
+
+.th2{
+    width: 20%;
+    text-align: center;
+}
+
+.th3{
+    width: 15%;
+    text-align: center;
+}
+
+
+
+
+.cartProductQuantityOptions{
+    border: none;
+    outline: none;
+}
+
+.cartProductDetails{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.shoppingProductDetails{
+    height: 100px;
+}
+
+.cartProductDetailsImage{
+    width: 6.5vw;
+    height: auto;
+    aspect-ratio: 1/1;
+    border: 0.5px solid grey;
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.cartProductDetailsImage img{
+    width: 90%;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.cartProductName{
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: #364153;
+}
+
+.cartProductWeight, .cartProductQty{
+    margin-bottom: 3px;
+    color: #6a7282a2;
+}
+
+.cartProductQty select{
+    color: #6a7282a2;;
+}
+
+.cartTableProductPrice{
+    font-size: 15px;
+    font-weight: 600;
+    color: #364153;
+    text-align: center;
+}
+
+.cartCircleMark{
+    text-align: center;
+}
+
 /* Hover effects */
 button:hover{
     cursor: pointer;

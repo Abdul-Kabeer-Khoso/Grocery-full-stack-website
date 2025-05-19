@@ -25,7 +25,7 @@
             color: #4fbf8b;
         }
         .navLinks-searchBar{
-            width: 57%;
+            width: 65%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -36,12 +36,15 @@
             background-color: rgb(175, 175, 175);;
             border-radius: 50%;
         }
-        .navLinks a{
-            color: rgb(46, 46, 46);
+
+
+        .headerLinks{
             text-decoration: none;
-            margin-left: 10px;
-            font-size: 15px;
+            margin-left: 17px;
+            color: rgb(46, 46, 46);
+            font-size: 14px;
         }
+
         .navLinks, .navSearch{
             display: flex;
             align-items: center;
@@ -88,8 +91,20 @@
             font-size: 12px;
         }
 
+        .sellerLink{
+            color: rgb(46, 46, 46);
+            text-decoration: none;
+            margin-left: 17px;
+            border: 0.5px solid rgb(187, 185, 185);
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 20px;
+            transition-property: all;
+            transition-duration: 0.4s;
+            transition-timing-function: ease-in-out;
+        }
 
-        .navLinks a:hover{
+        .headerLink:hover{
             cursor: pointer;
             color: rgb(24, 24, 24);
         }     
@@ -101,7 +116,15 @@
 
         .navCart i:hover{
             cursor: pointer;
-            color:rgb(71,71,71);
+        }
+
+        .sellerLink:hover{
+            cursor: pointer;
+            color: white;
+            background-color: #4fbf8b;
+            border-color: white;
+            padding: 5px 11px;
+            font-size: 14px;
         }
 
     </style>
@@ -113,22 +136,21 @@
 
         <div class="navLinks-searchBar">
             <div class="navLinks">
-                <a href="/seller">Seller</a>
-                <a href="/product">Home</a>
-                <a href="/product/all">All Products</a>
-                <a href="#">Contact</a>
+                <a href="/seller"  class="sellerLink">Seller Dashboard</a>
+                <a href="/product" class="headerLinks">Home</a>
+                <a href="/product/all" class="headerLinks">All Products</a>
             </div>
             <div class="navSearch">
                 <input type="text" placeholder="Search products">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             
-            <div class="navCart">
+            <a href="/product/cart" class="navCart">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <div class="cartItems">
                     <p class="cartItemsNumber">0</p>
                 </div>
-            </div>
+            </a>
 
             
 
