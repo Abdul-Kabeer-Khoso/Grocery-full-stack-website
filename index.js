@@ -53,6 +53,11 @@ app.get("/product/cart", (req, res)=>{
     res.render('cart.ejs');
 })
 
+//add new address
+app.get("/product/address", (req, res)=>{
+    res.render('addAddress.ejs');
+})
+
 // Details of Product
 app.get("/product/:id", async (req, res)=>{
     let {id}= req.params;

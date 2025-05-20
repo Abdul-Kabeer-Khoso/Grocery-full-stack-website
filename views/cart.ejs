@@ -159,6 +159,10 @@
                 <button class="changeAddressBtn">Change</button>
             </div>
 
+            <div class="changeAddressBox" style="display: none">
+                <a href="/product/address" class="addNewAddress">Add address</a>
+            </div>
+
             <p class="cartSectionBox2Titles">PAYMENT METHOD</p>
 
             <select class="paymentMethod">
@@ -204,6 +208,7 @@
 
     <script>
 
+    // Payment Wise Button 
     let paymentMethodSelect = document.getElementsByClassName('paymentMethod')[0];
     let placeOrderBtn = document.getElementsByClassName('placeOrderBtn')[0];
     let onlinePaymentBtn = document.getElementsByClassName('onlinePaymentBtn')[0];
@@ -224,6 +229,18 @@
             onlinePaymentBtn.style.display="none";
         }
     });
+
+
+    // Change Address functionality
+    let changeAddressBtn = document.getElementsByClassName("changeAddressBtn")[0];
+    let changeAddressBox = document.getElementsByClassName("changeAddressBox")[0];
+    changeAddressBtn.addEventListener("click", ()=>{
+        if(changeAddressBox.style.display=="none"){
+            changeAddressBox.style.display="inline-block";
+        }else{
+            changeAddressBox.style.display="none";
+        }
+    })
 }
     </script>
 

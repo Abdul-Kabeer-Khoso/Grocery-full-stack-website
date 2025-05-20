@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../public/css/homeStyle.css">
+    <title>Grocify</title>
+</head>
+<body>
+    <%- include('includes/header.ejs') %>
+
+    <main class="homeMainSection">
+
+        <div class="newShippingAddressBox">
+
+        <div class="newAddressFormBox">
+            <h1 class="newAddressHeading">Add Shipping <span>Address</span></h1>
+
+            <form class="newAddressForm">
+
+                <div class="formInnerBox">
+                <input type="text" placeholder="First Name">
+                <input type="text" placeholder="Last Name" >
+                </div>
+
+                <input type="email" placeholder="Email Address" class="inputFullSize">
+
+                <input type="text" placeholder="Street" class="inputFullSize">
+
+                <div class="formInnerBox">
+                <input type="text" placeholder="City">
+                <input type="text" placeholder="State">
+                </div>
+
+                <div class="formInnerBox">
+                <input type="text" placeholder="Zip Code">
+                <input type="text" placeholder="Country">
+                </div>
+
+                <input type="text" placeholder="Phone" class="inputFullSize">
+
+                <button class="saveAddressBtn">SAVE ADDRESS</button>
+            </form>
+
+        </div>
+
+        <div class="newAddressBoxImage">
+            <img src="https://greencart-gs.vercel.app/assets/add_address_image-BNaKxJCQ.svg">
+        </div>
+
+        </div>
+
+    </main>
+
+    <%- include('includes/footer.ejs')%>
+</body>
+</html>
