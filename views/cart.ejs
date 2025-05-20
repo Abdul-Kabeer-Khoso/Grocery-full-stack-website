@@ -142,9 +142,55 @@
                     
                 </tbody>
             </table>
+
+            <a href="/product/all" class="continueShopping"> <i class="fa-solid fa-arrow-left" style="color:#4fbf8b"></i> Continue Shopping</a>
         </div>
 
         <div class="cartSectionBox2">
+
+            <h2>Order Summary</h2>
+
+            <hr>
+
+            <p class="deliveryAddressTitle cartSectionBox2Titles">DELIVERY ADDRESS</p>
+
+            <div class="addressBox">
+                <p class="shippingAddress">No addresss</p>
+                <button class="changeAddressBtn">Change</button>
+            </div>
+
+            <p class="cartSectionBox2Titles">PAYMENT METHOD</p>
+
+            <select class="paymentMethod">
+                <option class="paymentSelectOptions">Cash On Delivery</option>
+                <option class="paymentSelectOptions">Online Payment</option>
+            </select>
+
+            <hr>
+
+            <div class="cartDetailsAmountBox">
+                <p>Price</p>
+                <p>$0</p>
+            </div>
+
+            <div class="cartDetailsAmountBox">
+                <p>Shipping</p>
+                <p class="shippingFreeText">Free</p>
+            </div>
+
+            <div class="cartDetailsAmountBox">
+                <p>Tax(2%)</p>
+                <p>$0</p>
+            </div>
+
+            <div class="cartDetailsAmountBox cartTotalAmount">
+                <p>Total Amount</p>
+                <p>$0</p>
+            </div>
+
+            <button class="placeOrderBtn paymentBtns">Place Order</button>
+
+            <button class="onlinePaymentBtn paymentBtns" style="display: none;">Proceed to Pay</button>
 
         </div>
 
@@ -155,6 +201,31 @@
     </main>
 
     <%- include('includes/footer.ejs')%>
+
+    <script>
+
+    let paymentMethodSelect = document.getElementsByClassName('paymentMethod')[0];
+    let placeOrderBtn = document.getElementsByClassName('placeOrderBtn')[0];
+    let onlinePaymentBtn = document.getElementsByClassName('onlinePaymentBtn')[0];
+
+    if (paymentMethodSelect && paymentMethodSelect.tagName === 'SELECT') {
+    paymentMethodSelect.addEventListener('change', function() {
+        let selectedValue = this.value;
+
+        // Get the text of the newly selected option
+        let selectedOptionText = this.options[this.selectedIndex].innerText;
+
+        // Your conditional logic based on the selected value
+        if (selectedValue === 'Online Payment') {
+           onlinePaymentBtn.style.display="inline";
+           placeOrderBtn.style.display="none";
+        } else if (selectedValue === 'Cash On Delivery') {
+            placeOrderBtn.style.display="inline";
+            onlinePaymentBtn.style.display="none";
+        }
+    });
+}
+    </script>
 
 </body>
 </html>
