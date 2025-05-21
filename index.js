@@ -14,6 +14,10 @@ app.use(express.static('public'));
 //uuid 
 const {v4: uuidv4} = require('uuid');
 
+//Method Override
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+
 
 //MySQL setup
 const mysql = require('mysql2');
@@ -50,7 +54,19 @@ app.get("/product/all", (req, res)=>{
 
 //Show Cart 
 app.get("/product/cart", (req, res)=>{
-    res.render('cart.ejs');
+    let getCartProductQuery = 'select p.productId, p.productName, p.newPrice, p.productImage1 from Products p join Cart c on p.productId = c.productId';
+    try{
+        connection.query(getCartProductQuery, (err, result)=>{
+            let products = result;
+            if(err){
+                res.send("There is error in query of showing cart product");
+            } else{
+                res.render('cart.ejs', {products});
+            }
+        })
+    } catch (err){
+        res.send("There is something error in showing cart product");
+    }
 })
 
 //add new address
@@ -112,6 +128,40 @@ app.post("/seller/add", (req, res)=>{
             })
     }catch(err){
         res.send(err);
+    }
+})
+
+
+//Add to cart
+app.post("/product/:id", (req, res)=>{
+    let productId = req.params.id;
+    let addToCartQuery = 'insert into Cart(productId) values (?)';
+    try{
+        connection.query(addToCartQuery, [productId], (err, result)=>{
+            if(err){
+                res.send("There is something error in query of add to cart");
+            } else{
+                res.redirect("/product/all");
+            }
+        })
+    } catch (err){
+        res.send("There is something error in add to cart");
+    }
+})
+
+app.delete("/product/:id", (req, res)=>{
+    let productId = req.params.id;
+    let deleteProductCartQuery = `delete from Cart where productId = ?`; 
+    try{
+        connection.query(deleteProductCartQuery, [productId], (err, result)=>{
+            if(err){
+                res.send("There is something error in removing product form cart's query");
+            } else{
+                res.redirect('/product/cart');
+            }
+        })
+    } catch(err){
+        res.send("There is something error in removing product from cart");
     }
 })
 

@@ -32,9 +32,11 @@
                                 <p class="bestSellingProductOldPrice">$<%=product.oldPrice%></p>
                                 </div>
 
+                                <form method="POST" action="/product/<%=product.productId%>">
                                 <div class="buttons">
                                     <button class="AddButton"><i class="fa-solid fa-cart-shopping" style="color: #2f7052;"></i> <span>Add </span></button>
                                 </div>
+                                </form>
                             </div>
                         </div> 
                         </a>

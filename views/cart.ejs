@@ -31,14 +31,16 @@
                 </thead>
 
                 <tbody>
+                    <% for(product of products) {%>
+
                     <tr class="shoppingProductDetails">
                         <td class="cartTableProductDetails">
                         <div class="cartProductDetails">
                             <div class="cartProductDetailsImage">
-                                <img src="https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/bhrtl76sscvmeiq4kchm.png">
+                                <img src="<%=product.productImage1%>">
                             </div>
                             <div class="cartProductDetailsText">
-                                <p class="cartProductName">Spinach 500g</p>
+                                <p class="cartProductName"><%=product.productName%></p>
                                 <p class="cartProductWeight">Weight: N/A</p>
                                 <div class="cartProductQty">Qty: <select class="cartProductQuantityOptions">
                                     <option>1</option>
@@ -57,88 +59,21 @@
                         </td>
 
                         <td class="cartTableProductDetails">
-                            <p class="cartTableProductPrice">$35</p>
+                            <p class="cartTableProductPrice">$<%=product.newPrice%></p>
                         </td>
 
                         <td>
                             <div class="cartCircleMark">
+                            <form method="POST" action="/product/<%=product.productId%>?_method=DELETE">
+                            <button>
                             <i class="fa-regular fa-circle-xmark" style="color: #ff0000;"></i>
+                            </button>
+                             </form>   
                             </div>
                         </td>
                     </tr>
 
-                    <tr class="shoppingProductDetails">
-                        <td class="cartTableProductDetails">
-                        <div class="cartProductDetails">
-                            <div class="cartProductDetailsImage">
-                                <img src="https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/bhrtl76sscvmeiq4kchm.png">
-                            </div>
-                            <div class="cartProductDetailsText">
-                                <p class="cartProductName">Spinach 500g</p>
-                                <p class="cartProductWeight">Weight: N/A</p>
-                                <div class="cartProductQty">Qty: <select class="cartProductQuantityOptions">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                </select> </div>
-                                
-                            </div>
-                        </div>
-                        </td>
-
-                        <td class="cartTableProductDetails">
-                            <p class="cartTableProductPrice">$35</p>
-                        </td>
-
-                        <td>
-                            <div class="cartCircleMark">
-                            <i class="fa-regular fa-circle-xmark" style="color: #ff0000;"></i>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="shoppingProductDetails">
-                        <td class="cartTableProductDetails">
-                        <div class="cartProductDetails">
-                            <div class="cartProductDetailsImage">
-                                <img src="https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/bhrtl76sscvmeiq4kchm.png">
-                            </div>
-                            <div class="cartProductDetailsText">
-                                <p class="cartProductName">Spinach 500g</p>
-                                <p class="cartProductWeight">Weight: N/A</p>
-                                <div class="cartProductQty">Qty: <select class="cartProductQuantityOptions">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                </select> </div>
-                                
-                            </div>
-                        </div>
-                        </td>
-
-                        <td class="cartTableProductDetails">
-                            <p class="cartTableProductPrice">$35</p>
-                        </td>
-
-                        <td>
-                            <div class="cartCircleMark">
-                            <i class="fa-regular fa-circle-xmark" style="color: #ff0000;"></i>
-                            </div>
-                        </td>
-                    </tr>
-
+                    <% } %>
                     
                 </tbody>
             </table>
