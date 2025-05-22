@@ -638,6 +638,10 @@ p{
     color: #6a7282a2;
 }
 
+.cartProductQty{
+    display: flex;
+}
+
 .cartProductQty select{
     color: #6a7282a2;;
 }
@@ -651,6 +655,12 @@ p{
 
 .cartCircleMark{
     text-align: center;
+}
+
+.cartCircleMark form button{
+    background-color: white;
+    border-radius: 50%;
+    border: none;
 }
 
 .continueShopping{
@@ -667,7 +677,8 @@ p{
 .cartSectionBox2{
     background-color:#f6f3f4;
     width: 30%;
-    height: auto;
+    height: 380px;
+    aspect-ratio: 1/1;
     padding: 1.3vw;
     position: relative;
 }

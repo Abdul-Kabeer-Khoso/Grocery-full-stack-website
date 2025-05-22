@@ -54,14 +54,24 @@ app.get("/product/all", (req, res)=>{
 
 //Show Cart 
 app.get("/product/cart", (req, res)=>{
-    let getCartProductQuery = 'select p.productId, p.productName, p.newPrice, p.productImage1 from Products p join Cart c on p.productId = c.productId';
+    let getCartProductQuery = 'select p.productId, p.productName, p.newPrice, p.productImage1, c.productQuantity from Products p join Cart c on p.productId = c.productId';
     try{
         connection.query(getCartProductQuery, (err, result)=>{
-            let products = result;
+         let  products = result.map(product => {
+            const totalPricePerItem = product.newPrice * product.productQuantity;
+            return {
+                ...product,
+                totalPricePerItem: totalPricePerItem
+            };
+            });
+            const prices = products.map(product=> product.totalPricePerItem);
+            const price = prices.reduce((sum, price)=> sum + price, 0);
+            const tax = price * 0.02;
+            const totalPrice = tax + price;
             if(err){
                 res.send("There is error in query of showing cart product");
             } else{
-                res.render('cart.ejs', {products});
+                res.render('cart.ejs', {products: products, price: price, tax: tax, totalPrice: totalPrice });
             }
         })
     } catch (err){
@@ -149,6 +159,8 @@ app.post("/product/:id", (req, res)=>{
     }
 })
 
+
+//Delete product from cart
 app.delete("/product/:id", (req, res)=>{
     let productId = req.params.id;
     let deleteProductCartQuery = `delete from Cart where productId = ?`; 
@@ -165,6 +177,25 @@ app.delete("/product/:id", (req, res)=>{
     }
 })
 
+
+//Update Product Quantity in cart
+app.patch("/product/:id", (req, res)=>{
+    let productId = req.params.id;
+    let quantity = req.body.quantity;
+    let updateCartQtyQuery = 'update Cart set productQuantity = ? where productId = ?';
+    try{
+        connection.query(updateCartQtyQuery, [quantity, productId], (err, result)=>{
+            if(err){
+                res.send("There is something error in updating product quantity query");
+            } else{
+                res.redirect('/product/cart');
+            }
+        })
+    }
+    catch (err){
+        res.send("There is something error in updating quantity of product in cart");
+    }
+})
 
 
 app.listen(8080, ()=>{
