@@ -31,6 +31,7 @@
             align-items: center;
         }
         .navLoginDetails{
+            display: none;
             width: 30px;
             height: 30px;
             background-color: rgb(175, 175, 175);;
@@ -104,6 +105,18 @@
             transition-timing-function: ease-in-out;
         }
 
+        .loginBtnBox .loginBtn{
+            width: 80px;
+            height: auto;
+            aspect-ratio: 1/0.4;
+            border-radius: 20px;
+            border: none;
+            background-color: #4fbf8b;
+            color: white;
+            font-size: 15px;
+            margin-left: 10px;
+        }
+
         .headerLink:hover{
             cursor: pointer;
             color: rgb(24, 24, 24);
@@ -148,13 +161,16 @@
             <a href="/product/cart" class="navCart">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <div class="cartItems">
-                    <p class="cartItemsNumber">0</p>
+                    <p class="cartItemsNumber"><%=totalCartProducts%></p>
                 </div>
             </a>
 
             
-
             <div class="navLoginDetails">
+            </div>
+
+            <div class="loginBtnBox">
+                <button class="loginBtn">Login</button>
             </div>
 
         </div>

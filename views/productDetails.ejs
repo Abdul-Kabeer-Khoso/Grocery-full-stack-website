@@ -31,7 +31,11 @@
 
             <div class="detailsText">
                 <h2><%=product.productName%></h2>
-                <p class="reviews">(<%=product.productReviews%>)</p>
+                <div class="reviews">
+                    <%for(let i=0; i< product.productReviews; i++) {%>
+                        <i class="fa-solid fa-star"></i>
+                     <% } %>   
+                </div>
                 <p class="mrpOldPrice">MRP: $<%=product.oldPrice%></p>
                 <p class="mrpNewPrice">MRP: $<%=product.newPrice%></p>
                 <p class="taxText">(inclusive of all taxes)</p>
@@ -39,8 +43,13 @@
                 <p class="aboutProductHeading">About Product</p>
                 <p class="productDescriptionText"><%=product.productDescription%></p>
                 <div class="detailsBtns">
+                <form method="POST" action="/product/add/<%=product.productId%>">
                     <button class="addToCartBtn">Add to Cart</button>
+                </form>
+
+                <form>
                     <button class="buyNowBtn">Buy Now</button>
+                </form>
                 </div>
             </div>
 

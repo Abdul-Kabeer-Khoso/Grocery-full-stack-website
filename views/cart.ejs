@@ -139,7 +139,7 @@
 
     <%- include('includes/footer.ejs')%>
 
-    <script>
+    <!-- <script>
 
     // Payment Wise Button 
     let paymentMethodSelect = document.getElementsByClassName('paymentMethod')[0];
@@ -189,9 +189,9 @@
     
 
   
-    </script>
+    </script> -->
 
-<!-- <script>
+<script>
 // Payment Wise Button 
 let paymentMethodSelect = document.getElementsByClassName('paymentMethod')[0];
 let placeOrderBtn = document.getElementsByClassName('placeOrderBtn')[0];
@@ -223,6 +223,7 @@ if (paymentMethodSelect && paymentMethodSelect.tagName === 'SELECT') {
 }
 
 // Cart Product Quantity option logic (AJAX version)
+// Cart Product Quantity option logic (AJAX version)
 const quantitySelects = document.querySelectorAll(".cartProductQuantity");
 
 quantitySelects.forEach(select => {
@@ -242,18 +243,36 @@ quantitySelects.forEach(select => {
 
             if (res.ok) {
                 console.log(`Quantity updated to ${quantity} for product ${productId}`);
-                // Optionally, update the subtotal or total price via DOM or refetch partials
-                // location.reload(); // uncomment if you want to refresh totals
+                // Check if the response is a redirect
+                if (res.redirected) {
+                    // Follow the redirect by reloading the page to the new URL
+                    window.location.href = res.url; // This will reload the page to /product/cart
+                } else {
+                    // Update quantity display (optional, if no redirect happens)
+                    const quantityDisplay = document.querySelector(`#quantity-${productId}`);
+                    if (quantityDisplay) {
+                        quantityDisplay.textContent = quantity;
+                    }
+                    // Show success message
+                    const successMessage = document.createElement("div");
+                    successMessage.textContent = "Quantity updated successfully!";
+                    successMessage.style.color = "green";
+                    document.body.appendChild(successMessage);
+                    setTimeout(() => successMessage.remove(), 3000);
+                }
             } else {
                 console.error("Failed to update quantity");
+                const errorText = await res.text();
+                console.log("Error response:", errorText);
             }
-
         } catch (err) {
             console.error("Error:", err);
         }
     });
 });
-</script> -->
+
+
+</script>
 
 
 </body>
