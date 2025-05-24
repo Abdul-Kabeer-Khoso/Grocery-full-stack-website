@@ -493,16 +493,10 @@ p{
     font-weight: 600;
 }
 
-.detailsBtns{
-    display: flex;
-}
 
-.detailsBtns form{
-    width: 150px;
-}
 
 .detailsBtns button{
-    width: 90%;
+    width: 35%;
     height: auto;
     aspect-ratio: 1/0.3;
     border-radius: 3px;
