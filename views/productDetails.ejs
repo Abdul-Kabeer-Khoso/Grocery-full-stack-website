@@ -43,11 +43,11 @@
                 <p class="aboutProductHeading">About Product</p>
                 <p class="productDescriptionText"><%=product.productDescription%></p>
                 <div class="detailsBtns">
-                <form method="POST" action="/product/add/<%=product.productId%>">
+                <form method="POST" action="/product/add/<%=product.productId%>" class="detailBtnForm">
                     <button class="addToCartBtn">Add to Cart</button>
                 </form>
 
-                <form>
+                <form class="detailBtnForm">
                     <button class="buyNowBtn">Buy Now</button>
                 </form>
                 </div>

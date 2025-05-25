@@ -1,4 +1,6 @@
 const express = require('express');
+const session = require('express-session');
+const flash = require('connect-flash');
 const app = express();
 
 
@@ -29,6 +31,34 @@ const connection = mysql.createConnection({
     password: 'admin123'
 })
 
+connection.connect(err=>{
+    if(err) throw err;
+    console.log('MySQL Connected');
+})
+
+
+
+//Passport setup
+const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcryptjs');
+
+
+app.use(session({
+    secret: "secret_key",
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+
+require('./configPassport.js')(passport, connection);
 
 //Home Page
 app.get("/product", (req, res)=>{
@@ -81,7 +111,7 @@ app.get("/product/cart", (req, res)=>{
             if(err){
                 res.send("There is error in query of showing cart product");
             } else{
-                res.render('cart.ejs', {products: products, price: price, tax: tax, totalPrice: totalPrice, totalCartProducts: productLength });
+                res.render('cart.ejs', {products: products, price: price, tax: tax.toFixed(1), totalPrice: totalPrice.toFixed(1), totalCartProducts: productLength });
             }
         })
     } catch (err){
@@ -228,6 +258,40 @@ app.patch("/product/:id", (req, res)=>{
     }
 })
 
+app.post('/product/user/signup', async (req, res)=>{
+    let user = req.body.user;
+    let userId = uuidv4();
+    let username = user.username;
+    let password = user.password;
+    let useremail = user.email;
+
+
+
+    try{
+
+        console.log("before query");
+        let hashedPassword = await bcrypt.hash(password, 10);
+        connection.query('insert into Users(userId ,username, userpassword, email) values (? , ?, ?, ?)', [userId, username, hashedPassword, useremail], (err, result)=>{
+            if(err){
+                return res.status(500).send("Error signing up!");
+            }
+            else{
+                res.redirect('/product');
+            }
+        })
+        
+    } catch(err){
+        res.send("There is something error in signup route");
+
+    }
+})
+
+
+app.post('/product/user/login', passport.authenticate('local', {
+    successRedirect: '/product',
+    failureRedirect: '/product/cart',
+    failureFlash: true
+}))
 
 app.listen(8080, ()=>{
     console.log("App is listening");

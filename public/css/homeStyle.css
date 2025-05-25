@@ -493,12 +493,21 @@ p{
     font-weight: 600;
 }
 
+.detailsBtns{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.detailBtnForm{
+    width: 50%;
+}
 
-.detailsBtns button{
-    width: 35%;
+.detailBtnForm button{
+    width: 100%;
     height: auto;
-    aspect-ratio: 1/0.3;
+    aspect-ratio: 1/0.4;
     border-radius: 3px;
     border: none;
     font-family:"Varela Round", sans-serif;

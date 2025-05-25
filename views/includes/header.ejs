@@ -128,7 +128,7 @@
             left: 0;
             right: 0;
             z-index: 2;
-            display: 'none';
+            display: none;
         }
 
         .loginInnerBox{
@@ -299,13 +299,13 @@
         <div class="loginOuterBox">
             <div class="loginInnerBox">
                 <h2>User <span class="loginTitle">Login</span>  <span class="signupTitle">Sign Up</span></h2>
-                <form class="loginForm newUserForm">
+                <form class="loginForm newUserForm" method="POST" action="/product/user/login">
                     <label for="email"> Email <br>
-                    <input type="text" placeholder="type here" id="email">
+                    <input type="email" placeholder="type here" id="email" name="user[email]" required>
                     </label>
 
                     <label for="password">Password <br>
-                    <input type="text" placeholder="type here" id="password">
+                    <input type="password" placeholder="type here" id="password" name="user[password]" required>
                     </label>
                     <p class="formTextLinks">
                         Create an account? <span class="formRedirection">click here</span>
@@ -314,18 +314,18 @@
                 </form>
 
 
-                <form class="signupForm newUserForm">
+                <form method="POST" action="/product/user/signup" class="signupForm newUserForm" >
 
                     <label for="username"> UserName <br>
-                    <input type="text" placeholder="type here" id="username">
+                    <input type="text" placeholder="type here" id="username" name="user[username]" required>
                     </label>
 
                     <label for="email2"> Email <br>
-                    <input type="text" placeholder="type here" id="email2">
+                    <input type="email" placeholder="type here" id="email2" name="user[email]" required>
                     </label>
 
                     <label for="password2">Password <br>
-                    <input type="text" placeholder="type here" id="password2">
+                    <input type="password" placeholder="type here" id="password2" name="user[password]" required>
                     </label>
                     <p class="formTextLinks">
                         Already have account? <a class="formRedirection">click here</a>
