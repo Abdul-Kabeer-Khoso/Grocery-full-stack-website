@@ -9,6 +9,7 @@ const path = require('path');
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 app.use('/public', express.static(path.join(__dirname, "public")));
 app.use(express.static('public'));
 
@@ -40,14 +41,15 @@ connection.connect(err=>{
 
 //Passport setup
 const passport = require('passport');
-const localStrategy = require('passport-local').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
 
 app.use(session({
     secret: "secret_key",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: { secure: false}
 }));
 
 app.use(flash());
@@ -287,9 +289,18 @@ app.post('/product/user/signup', async (req, res)=>{
 })
 
 
+app.get('/product/user/login/failed', (req, res)=>{
+    res.send("Login failed");
+});
+
+app.get('/product/user/login/successful', (req, res)=>{
+    res.send("user login successfully");
+})
+
+
 app.post('/product/user/login', passport.authenticate('local', {
-    successRedirect: '/product',
-    failureRedirect: '/product/cart',
+    successRedirect: '/product/user/login/successful',
+    failureRedirect: '/product/user/login/failed',
     failureFlash: true
 }))
 

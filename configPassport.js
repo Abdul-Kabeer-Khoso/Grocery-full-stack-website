@@ -1,10 +1,11 @@
-const localStrategy = require('passport-local').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
 module.exports = function(passport, db){
-    passport.use(new localStrategy(
-        (username, password, done)=>{
-            db.query('select * fromUsers where username = ?', [username], async (err, result)=>{
+    passport.use(new LocalStrategy(
+        {usernameField: 'email'},
+        (email, password, done)=>{
+            db.query('select * from Users where email = ?', [email], (err, result)=>{
                 if(err) return done(err);
 
                 if(result.length==0){
@@ -12,21 +13,27 @@ module.exports = function(passport, db){
                 }
 
                 const user= result[0];
+
+                bcrypt.compare(password, user.userpassword, (err, isMatch) => {
+                    if (err) return done(err);
+                    if (!isMatch) return done(null, false, { message: 'Incorrect password' });
+                    return done(null, user);
+                });
                 
-                const isMatch = await bcrypt.compare(password, user.password);
+                // const isMatch = await bcrypt.compare(password, user.userpassword);
 
-                if(!isMatch) {
-                    return done(null, false, {message: 'Incorrect password'});
-                }
+                // if(!isMatch) {
+                //     return done(null, false, {message: 'Incorrect password'});
+                // }
 
-                return done(null, user); // user authenticated
+                // return done(null, user); // user authenticated
 
             })
         }
     ))
 
     passport.serializeUser((user, done)=>{
-        done(null, user.id);
+        done(null, user.userId);
     })
 
     passport.deserializeUser((id, done)=>{
