@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocify</title>
+    <style>
+        .flashBox{
+            font-family: "Varela Round", sans-serif;
+            padding: 10px;
+            background-color: rgb(245, 104, 104);
+            color: black;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .flashBox p{
+            margin: 0 35px 0 0;
+        }
+        .flashBox i:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <%if(error && error.length>0) {%>
+    <div class="flashBox">
+
+        <p><%=error%></p>
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+    <%}%>
+
+    <script>
+        let crossIcon = document.getElementsByClassName("fa-xmark")[0];
+        let flashBox = document.getElementsByClassName("flashBox")[0];
+        crossIcon.addEventListener("click", ()=>{
+            flashBox.style.display="none";
+        })
+    </script>
+</body>
+</html>

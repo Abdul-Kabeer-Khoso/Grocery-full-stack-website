@@ -1,7 +1,11 @@
 const express = require('express');
+const app = express();
+const ExpressError = require("./utils/ExpressError.js");
+const wrapAsync = require("./utils/wrapAsync.js");
 const session = require('express-session');
 const flash = require('connect-flash');
-const app = express();
+app.use(flash());
+
 
 
 //Path Setup for views directory
@@ -37,6 +41,8 @@ connection.connect(err=>{
     console.log('MySQL Connected');
 })
 
+//Middlewares
+const {isLoggedIn} = require("./middleware.js");
 
 
 //Passport setup
@@ -52,15 +58,18 @@ app.use(session({
     cookie: { secure: false}
 }));
 
-app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
-
 require('./configPassport.js')(passport, connection);
+
+app.use((req, res, next)=>{
+    res.locals.success= req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+})
+
 
 //Home Page
 app.get("/product", (req, res)=>{
@@ -93,8 +102,8 @@ app.get("/product/all", async (req, res)=>{
     }
 })
 
-//Show Cart 
-app.get("/product/cart", (req, res)=>{
+// //Show Cart 
+app.get("/product/cart", isLoggedIn,  wrapAsync((req, res)=>{
     let getCartProductQuery = 'select p.productId, p.productName, p.newPrice, p.productImage1, c.productQuantity from Products p join Cart c on p.productId = c.productId';
     try{
         connection.query(getCartProductQuery, (err, result)=>{
@@ -119,15 +128,15 @@ app.get("/product/cart", (req, res)=>{
     } catch (err){
         res.send("There is something error in showing cart product");
     }
-})
+}))
 
-//add new address
+// //add new address
 app.get("/product/address", (req, res)=>{
     res.render('addAddress.ejs');
 })
 
-// Details of Product
-app.get("/product/:id", async (req, res)=>{
+// // Details of Product
+app.get("/product/:id", isLoggedIn, async (req, res)=>{
     let {id}= req.params;
     let findProductQuery = `select * from Products where productId = "${id.toString()}"`;
     let findRelatedProductsQuery = 'select * from Products where productCategory = ?';
@@ -151,7 +160,7 @@ app.get("/product/:id", async (req, res)=>{
     }
 })
 
-//Show Seller Products
+// //Show Seller Products
 app.get("/seller", (req, res)=>{
     let allProducts = 'select * from Products';
     try{
@@ -186,7 +195,7 @@ app.post("/seller/add", (req, res)=>{
     }
 })
 
-//Adding product to cart using add to cart button
+// // Adding product to cart using add to cart button
 app.post('/product/add/:id', (req, res)=>{
     let productId = req.params.id;
     let addToCartQuery = 'insert into Cart(productId) values (?)';
@@ -204,7 +213,7 @@ app.post('/product/add/:id', (req, res)=>{
 })
 
 
-//Add to cart
+// // Add to cart
 app.post("/product/:id", (req, res)=>{
     let productId = req.params.id;
     let addToCartQuery = 'insert into Cart(productId) values (?)';
@@ -222,7 +231,7 @@ app.post("/product/:id", (req, res)=>{
 })
 
 
-//Delete product from cart
+// // Delete product from cart
 app.delete("/product/:id", (req, res)=>{
     let productId = req.params.id;
     let deleteProductCartQuery = `delete from Cart where productId = ?`; 
@@ -240,7 +249,7 @@ app.delete("/product/:id", (req, res)=>{
 })
 
 
-//Update Product Quantity in cart
+// // Update Product Quantity in cart
 app.patch("/product/:id", (req, res)=>{
     let productId = req.params.id;
     let quantity = req.body.quantity;
@@ -266,9 +275,6 @@ app.post('/product/user/signup', async (req, res)=>{
     let username = user.username;
     let password = user.password;
     let useremail = user.email;
-
-
-
     try{
 
         console.log("before query");
@@ -290,10 +296,14 @@ app.post('/product/user/signup', async (req, res)=>{
 
 
 app.get('/product/user/login/failed', (req, res)=>{
-    res.send("Login failed");
+    req.flash("loginError", "Email or password incorrect");
+    res.locals.message = req.flash("loginError");
+    res.render('includes/flash.ejs')
 });
 
 app.get('/product/user/login/successful', (req, res)=>{
+    req.flash("loginSuccessful", "User Login Successful");
+    res.locals.message = req.flash("loginSuccessful");
     res.send("user login successfully");
 })
 
@@ -303,6 +313,18 @@ app.post('/product/user/login', passport.authenticate('local', {
     failureRedirect: '/product/user/login/failed',
     failureFlash: true
 }))
+
+
+// If any route doesn't match
+// app.all("*", (req, res, next)=>{
+//     next(new ExpressError(404, "Page Not found"));
+// })
+
+// // Error handling middleware
+// app.use((err, req, res, next)=>{
+//     let {statusCode=500, message="Something went wrong!"} = err;
+//     res.send("Middleware error");
+// })
 
 app.listen(8080, ()=>{
     console.log("App is listening");
