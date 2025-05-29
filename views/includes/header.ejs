@@ -32,11 +32,12 @@
             align-items: center;
         }
         .navLoginDetails{
-            display: none;
             width: 30px;
             height: 30px;
             background-color: rgb(175, 175, 175);;
             border-radius: 50%;
+            background-image: url('https://cdn-icons-png.flaticon.com/512/236/236832.png');
+            background-size: cover;
         }
 
 
@@ -220,6 +221,36 @@
             display: inline;
         }
 
+        .navDetailsOptionsBox{
+            width: 100px;
+            background-color: white;
+            border: 0.5px solid grey;
+            border-radius: 3px;
+            display: flex;
+            flex-direction: column;
+            padding: 7px 0px;
+            visibility: hidden;
+            position: absolute;
+            right: 9vw;
+            top: 4vw;
+            z-index: 4;
+
+        }
+
+        .navDetailsOption{
+            text-decoration: none;
+            margin-bottom: 3px;
+            color: black;
+            padding: 1px 0px 1px 6px;
+            font-size: 13px;
+        }
+
+        .navDetailsOption:hover{
+            background-color: #4fbf8b;
+            color: white;
+
+        }
+
         body.modal-open {
             pointer-events: none; /* Disable clicks on other elements */
         }
@@ -260,6 +291,9 @@
             cursor: pointer;
             font-size: 14px;
         }
+        .navLoginDetails:hover{
+            cursor: pointer;
+        }
 
     </style>
 <body>
@@ -287,13 +321,18 @@
             </a>
 
 
-            
+            <% if(currUser) {%>
             <div class="navLoginDetails">
             </div>
+            <div class="navDetailsOptionsBox">
+                <a href="#" class="navDetailsOption">My Orders</a>
+                <a href="/logout" class="navDetailsOption">Logout</a>
+            </div>
+            <% } else{%>
             <div class="loginBtnBox">
                 <button class="loginBtn">Login</button>
             </div>
-            
+            <%}%>
         </div>
 
         <div class="loginOuterBox">
@@ -338,6 +377,18 @@
 
 
     <script>
+
+        // Show Current User Details
+        let userDetails = document.getElementsByClassName("navLoginDetails")[0];
+        let navDetailsOptionsBox = document.getElementsByClassName("navDetailsOptionsBox")[0];
+        let visible=false;
+        if(userDetails){
+        userDetails.addEventListener("click", ()=>{
+            visible? navDetailsOptionsBox.style.visibility="hidden": navDetailsOptionsBox.style.visibility="visible";
+            visible = !visible;
+        })
+        }
+       
         // Get elements
         const loginBtn = document.querySelector('.loginBtn');
         const loginOuterBox = document.querySelector('.loginOuterBox');
@@ -384,6 +435,8 @@
                     }
                 })
         })
+
+        
 
 
     </script>    

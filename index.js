@@ -67,7 +67,19 @@ require('./configPassport.js')(passport, connection);
 app.use((req, res, next)=>{
     res.locals.success= req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.currUser = req.user;
     next();
+})
+
+
+app.get("/logout", (req, res)=>{
+    req.logout((err)=>{
+        if(err){
+            return next(err);
+        }
+        req.flash("success", "you are logged out");
+        res.redirect("/product");
+    })
 })
 
 
@@ -103,7 +115,7 @@ app.get("/product/all", async (req, res)=>{
 })
 
 // //Show Cart 
-app.get("/product/cart", isLoggedIn,  wrapAsync((req, res)=>{
+app.get("/product/cart", isLoggedIn,  (req, res)=>{
     let getCartProductQuery = 'select p.productId, p.productName, p.newPrice, p.productImage1, c.productQuantity from Products p join Cart c on p.productId = c.productId';
     try{
         connection.query(getCartProductQuery, (err, result)=>{
@@ -128,7 +140,7 @@ app.get("/product/cart", isLoggedIn,  wrapAsync((req, res)=>{
     } catch (err){
         res.send("There is something error in showing cart product");
     }
-}))
+})
 
 // //add new address
 app.get("/product/address", (req, res)=>{
@@ -276,8 +288,6 @@ app.post('/product/user/signup', async (req, res)=>{
     let password = user.password;
     let useremail = user.email;
     try{
-
-        console.log("before query");
         let hashedPassword = await bcrypt.hash(password, 10);
         connection.query('insert into Users(userId ,username, userpassword, email) values (? , ?, ?, ?)', [userId, username, hashedPassword, useremail], (err, result)=>{
             if(err){
@@ -309,7 +319,7 @@ app.get('/product/user/login/successful', (req, res)=>{
 
 
 app.post('/product/user/login', passport.authenticate('local', {
-    successRedirect: '/product/user/login/successful',
+    successRedirect: '/product',
     failureRedirect: '/product/user/login/failed',
     failureFlash: true
 }))

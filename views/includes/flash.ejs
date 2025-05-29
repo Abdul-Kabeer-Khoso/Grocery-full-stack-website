@@ -37,9 +37,11 @@
     <script>
         let crossIcon = document.getElementsByClassName("fa-xmark")[0];
         let flashBox = document.getElementsByClassName("flashBox")[0];
+        if(crossIcon){
         crossIcon.addEventListener("click", ()=>{
             flashBox.style.display="none";
         })
+        }
     </script>
 </body>
 </html>
