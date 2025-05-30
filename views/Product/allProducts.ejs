@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <%- include('includes/header.ejs')%>
+    <%- include('../includes/header.ejs')%>
 
     <main class="homeMainSection allProductMainSection">
 
@@ -32,7 +32,7 @@
                                 <p class="bestSellingProductOldPrice">$<%=product.oldPrice%></p>
                                 </div>
 
-                                <form method="POST" action="/product/<%=product.productId%>/add">
+                                <form method="POST" action="/product/add/<%=product.productId%>">
                                 <div class="buttons">
                                     <button class="AddButton"><i class="fa-solid fa-cart-shopping" style="color: #2f7052;"></i> <span>Add </span></button>
                                 </div>
@@ -46,7 +46,7 @@
     
     </main>    
 
-    <%- include('includes/footer.ejs')%>
+    <%- include('../includes/footer.ejs')%>
 
 </body>
 </html>

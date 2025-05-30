@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../public/css/homeStyle.css">
+    <title>Grocify</title>
+    <style>
+
+        .signupOuterBox{
+            width: 100%;
+            margin: 80px 0px 90px 0px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .signupInnerBox{
+            width: 270px;
+            height: auto;
+            padding: 30px 20px;
+            background-color: white;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border: 0.5px solid rgb(197, 197, 197);
+            box-shadow: 2px 2px 5px rgb(197, 197, 197);
+        }
+
+        .signupForm{
+            width: 100%;
+            height: auto;
+            font-family: "Varela Round", sans-serif;
+            font-size: 12px;
+            color: #364153;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+
+        .signupInnerBox h2{
+            margin: 0px 0px 15px 0px;
+            color:#4fbf8b;
+            font-family: "Varela Round", sans-serif;
+        }
+
+        .signupInnerBox h2 span{
+            color:#364153;
+        }
+
+        .signupForm label{
+            width: 100%;
+        }
+
+        .signupForm input, .newUserFormBtn{
+            width: 92%;
+            padding: 10px;
+            border-radius: 3.5px;
+            border: 0.5px solid rgb(197, 197, 197);
+            font-family: "Varela Round", sans-serif;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .signupForm input{
+            margin-top: 6px;
+            margin-bottom: 12px;
+        }
+
+        .formTextLinks .formRedirection{
+            color:#4fbf8b;
+            transition-property: all;
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in-out;
+        }
+
+        .signupForm p, .formRedirection{
+            text-decoration: none;
+            font-family: "Varela Round", sans-serif;
+            font-size: 13px;
+            color: #364153;
+            margin: 10px 0px 10px 0px;
+        }
+
+        .newUserFormBtn{
+            width: 100%;
+            background-color: #4fbf8b;
+            color: white;
+            border: none;
+            font-size: 14px;
+        }
+/* 
+        .signupTitle, .signupForm{
+            display: none;
+        } */
+
+    </style>
+</head>
+<body>
+
+    <%- include("../includes/header.ejs") %>
+
+        <div class="signupOuterBox">
+            <div class="signupInnerBox">
+                    <h2>User <span class="signupTitle">Signup</span></h2>
+                    <form method="POST" action="/product/user/signup" class="signupForm" >
+
+                    <label for="username"> UserName <br>
+                    <input type="text" placeholder="type here" id="username" name="user[username]" required>
+                    </label>
+
+                    <label for="email2"> Email <br>
+                    <input type="email" placeholder="type here" id="email2" name="user[email]" required>
+                    </label>
+
+                    <label for="password2">Password <br>
+                    <input type="password" placeholder="type here" id="password2" name="user[password]" required>
+                    </label>
+                    <p class="formTextLinks">
+                        Already have account? <a href="/user/login" class="formRedirection">click here</a>
+                    <p>
+                    <button class="newUserFormBtn">Create Account</button>
+                </form>
+            </div>
+        </div>  
+        
+    <%-include("../includes/footer.ejs")%>
+</body>
+</html>

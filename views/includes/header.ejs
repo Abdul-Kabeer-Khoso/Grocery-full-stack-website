@@ -96,7 +96,6 @@
 
         .sellerLink{
             color: rgb(46, 46, 46);
-            text-decoration: none;
             margin-left: 17px;
             border: 0.5px solid rgb(187, 185, 185);
             font-size: 12px;
@@ -104,6 +103,7 @@
             border-radius: 20px;
             transition-property: all;
             transition-duration: 0.4s;
+            text-decoration: none;
             transition-timing-function: ease-in-out;
         }
 
@@ -118,7 +118,7 @@
             font-size: 15px;
             margin-left: 10px;
         }
-
+/* 
         .loginOuterBox{
             width: 100%;
             height: 100%;
@@ -219,7 +219,7 @@
 
         .loginTitle{
             display: inline;
-        }
+        } */
 
         .navDetailsOptionsBox{
             width: 100px;
@@ -251,14 +251,6 @@
 
         }
 
-        body.modal-open {
-            pointer-events: none; /* Disable clicks on other elements */
-        }
-
-        body.modal-open .loginOuterBox,
-        body.modal-open .loginInnerBox {
-            pointer-events: auto; /* Allow clicks on modal */
-        }
 
 
 
@@ -313,10 +305,15 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             
+            
             <a href="/product/cart" class="navCart">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <div class="cartItems">
-                    <p class="cartItemsNumber"><%=totalCartProducts%></p>
+                    <% if(currUser) { %>
+                        <p class="cartItemsNumber"><%=totalCartProducts%></p>
+                    <% } else{ %>
+                        <p class="cartItemsNumber">0</p>
+                    <% } %>
                 </div>
             </a>
 
@@ -329,12 +326,12 @@
                 <a href="/logout" class="navDetailsOption">Logout</a>
             </div>
             <% } else{%>
-            <div class="loginBtnBox">
+            <form method="GET" action="/user/login" class="loginBtnBox">
                 <button class="loginBtn">Login</button>
-            </div>
+            </form>
             <%}%>
         </div>
-
+<!-- 
         <div class="loginOuterBox">
             <div class="loginInnerBox">
                 <h2>User <span class="loginTitle">Login</span>  <span class="signupTitle">Sign Up</span></h2>
@@ -372,7 +369,7 @@
                     <button class="newUserFormBtn">Create Account</button>
                 </form>
             </div>
-        </div>
+        </div> -->
     </header>
 
 
@@ -390,51 +387,51 @@
         }
        
         // Get elements
-        const loginBtn = document.querySelector('.loginBtn');
-        const loginOuterBox = document.querySelector('.loginOuterBox');
+        // const loginBtn = document.querySelector('.loginBtn');
+        // const loginOuterBox = document.querySelector('.loginOuterBox');
 
-        // Show modal when login button is clicked
-        loginBtn.addEventListener('click', () => {
-        loginOuterBox.style.display = 'flex';
-            document.body.classList.add('modal-open');
-        });
+        // // Show modal when login button is clicked
+        // loginBtn.addEventListener('click', () => {
+        // loginOuterBox.style.display = 'flex';
+        //     document.body.classList.add('modal-open');
+        // });
 
-        // Close modal when clicking outside the loginInnerBox
-        loginOuterBox.addEventListener('click', (e) => {
-            if (e.target === loginOuterBox) {
-                loginOuterBox.style.display = 'none';
-                document.body.classList.remove('modal-open');
-            }
-        });
+        // // Close modal when clicking outside the loginInnerBox
+        // loginOuterBox.addEventListener('click', (e) => {
+        //     if (e.target === loginOuterBox) {
+        //         loginOuterBox.style.display = 'none';
+        //         document.body.classList.remove('modal-open');
+        //     }
+        // });
 
-        //Change form by clicking
-        let loginForm = document.getElementsByClassName('loginForm')[0];
-        let signupForm = document.getElementsByClassName('signupForm')[0];
+        // //Change form by clicking
+        // let loginForm = document.getElementsByClassName('loginForm')[0];
+        // let signupForm = document.getElementsByClassName('signupForm')[0];
 
-        let loginTitle = document.getElementsByClassName('loginTitle')[0];
-        let signupTitle = document.getElementsByClassName('signupTitle')[0];
+        // let loginTitle = document.getElementsByClassName('loginTitle')[0];
+        // let signupTitle = document.getElementsByClassName('signupTitle')[0];
 
-        let isLogin = true;
+        // let isLogin = true;
 
-        let formAnchor = document.getElementsByClassName('formRedirection');
-        Array.from(formAnchor).forEach((a)=>{
-            a.addEventListener('click', ()=>{
-                console.log("event listener is working");
-                if(isLogin){
-                    loginForm.style.display="none";
-                    loginTitle.style.display="none";
-                    signupForm.style.display="flex";
-                    signupTitle.style.display="inline";
-                    isLogin=false;
-                } else{
-                     signupForm.style.display="none";
-                     signupTitle.style.display="none";
-                     loginForm.style.display="flex";
-                     loginTitle.style.display="inline";
-                     isLogin=true;
-                    }
-                })
-        })
+        // let formAnchor = document.getElementsByClassName('formRedirection');
+        // Array.from(formAnchor).forEach((a)=>{
+        //     a.addEventListener('click', ()=>{
+        //         console.log("event listener is working");
+        //         if(isLogin){
+        //             loginForm.style.display="none";
+        //             loginTitle.style.display="none";
+        //             signupForm.style.display="flex";
+        //             signupTitle.style.display="inline";
+        //             isLogin=false;
+        //         } else{
+        //              signupForm.style.display="none";
+        //              signupTitle.style.display="none";
+        //              loginForm.style.display="flex";
+        //              loginTitle.style.display="inline";
+        //              isLogin=true;
+        //             }
+        //         })
+        // })
 
         
 

@@ -553,6 +553,7 @@ p{
 .cartSectionBox1{
     width: 65%;
     height: auto;
+    margin-top: 40px;
 }
 
 .shoppingCartText{
@@ -692,6 +693,7 @@ p{
     aspect-ratio: 1/1;
     padding: 1.3vw;
     position: relative;
+    margin-top: 40px;
 }
 
 .cartSectionBox2 h2{

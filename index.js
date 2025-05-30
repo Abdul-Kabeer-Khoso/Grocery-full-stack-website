@@ -42,7 +42,7 @@ connection.connect(err=>{
 })
 
 //Middlewares
-const {isLoggedIn} = require("./middleware.js");
+const {isLoggedIn, saveRedirectUrl} = require("./middleware.js");
 
 
 //Passport setup
@@ -72,6 +72,7 @@ app.use((req, res, next)=>{
 })
 
 
+
 app.get("/logout", (req, res)=>{
     req.logout((err)=>{
         if(err){
@@ -83,17 +84,33 @@ app.get("/logout", (req, res)=>{
 })
 
 
+app.get("/user/login", (req, res)=>{
+    res.render("Users/login.ejs");
+})
+
+app.get("/user/signup", (req, res)=>{
+    res.render("Users/signup.ejs");
+})
+
+
 //Home Page
 app.get("/product", (req, res)=>{
-    let productsNumberQuery = 'select * from Cart';
+    let user = res.locals.currUser;
+    let productsNumberQuery = 'select * from Cart where userId = ?';
     try{
-        connection.query(productsNumberQuery, (err, result)=>{
+        if(user){
+            connection.query(productsNumberQuery, [user.userId], (err, result)=>{
             if(err){
                 res.send("There is something error in products Number Query");
             } else{
-                res.render('products.ejs', {totalCartProducts: result.length});
+                res.render('Product/products.ejs', {totalCartProducts: result.length});
             }
         })
+        }
+        else{
+            res.render('Product/products.ejs', {totalCartProducts: 0});
+        }
+         
     } catch(err){
         res.send("There is something error in home page")
     }
@@ -101,14 +118,22 @@ app.get("/product", (req, res)=>{
 
 //show all products
 app.get("/product/all", async (req, res)=>{
+    let user = res.locals.currUser;
     let showProductQuery = 'select * from Products';
-    let productsNumberQuery = 'select * from Cart';
+    let productsNumberQuery = `select * from Cart where userId = ?`;
     try{
         let [myProducts] = await connection.promise().query(showProductQuery);
-        let [productsNumber] = await connection.promise().query(productsNumberQuery);
         let allProducts = myProducts;
-        let totalCartProducts = productsNumber.length;
-        res.render('allProducts.ejs', {products: allProducts, totalCartProducts: totalCartProducts});
+        if(user){
+            let [productsNumber] = await connection.promise().query(productsNumberQuery, [user.userId]);
+            let totalCartProducts = productsNumber.length;
+            res.render('Product/allProducts.ejs', {products: allProducts, totalCartProducts: totalCartProducts});
+        }
+        else{
+            res.render('Product/allProducts.ejs', {products: allProducts, totalCartProducts: 0});
+        }
+        
+        
         }catch(err){
         res.send("There is something error in showing all products");
     }
@@ -116,9 +141,10 @@ app.get("/product/all", async (req, res)=>{
 
 // //Show Cart 
 app.get("/product/cart", isLoggedIn,  (req, res)=>{
-    let getCartProductQuery = 'select p.productId, p.productName, p.newPrice, p.productImage1, c.productQuantity from Products p join Cart c on p.productId = c.productId';
+    let user = res.locals.currUser;
+    let getCartProductQuery = 'SELECT  p.productId,  p.productName, p.newPrice, p.productImage1, c.productQuantity FROM  Cart c JOIN  Products p ON c.productId = p.productId WHERE c.userId = ?;';
     try{
-        connection.query(getCartProductQuery, (err, result)=>{
+        connection.query(getCartProductQuery, [user.userId], (err, result)=>{
          let  products = result.map(product => {
             const totalPricePerItem = product.newPrice * product.productQuantity;
             return {
@@ -134,7 +160,7 @@ app.get("/product/cart", isLoggedIn,  (req, res)=>{
             if(err){
                 res.send("There is error in query of showing cart product");
             } else{
-                res.render('cart.ejs', {products: products, price: price, tax: tax.toFixed(1), totalPrice: totalPrice.toFixed(1), totalCartProducts: productLength });
+                res.render('Product/cart.ejs', {products: products, price: price, tax: tax.toFixed(1), totalPrice: totalPrice.toFixed(1), totalCartProducts: productLength });
             }
         })
     } catch (err){
@@ -144,28 +170,39 @@ app.get("/product/cart", isLoggedIn,  (req, res)=>{
 
 // //add new address
 app.get("/product/address", (req, res)=>{
-    res.render('addAddress.ejs');
+    res.render('Product/addAddress.ejs');
 })
 
 // // Details of Product
 app.get("/product/:id", isLoggedIn, async (req, res)=>{
     let {id}= req.params;
+    let user = res.locals.currUser;
     let findProductQuery = `select * from Products where productId = "${id.toString()}"`;
     let findRelatedProductsQuery = 'select * from Products where productCategory = ?';
-    let productNumberQuery = 'select * from Cart';
+    let productNumberQuery = 'select * from Cart where userId = ?';
     try{
         let productDetails =await connection.promise().query(findProductQuery);
         let myProductDetails = productDetails[0][0];
         let relatedProducts = await connection.promise().query(findRelatedProductsQuery, [myProductDetails.productCategory]);
         let myRelatedProducts = relatedProducts[0];
-        let productNumber = await connection.promise().query(productNumberQuery);
-        let totalCartProducts = productNumber[0].length;
-        if(productDetails && relatedProducts){
-            res.render('productDetails.ejs', {product: myProductDetails, relatedProducts: myRelatedProducts, totalCartProducts: totalCartProducts})
+        if(user){
+            let productNumber = await connection.promise().query(productNumberQuery, [user.userId]);
+            let totalCartProducts = productNumber[0].length;
+            if(productDetails && relatedProducts){
+            res.render('Product/productDetails.ejs', {product: myProductDetails, relatedProducts: myRelatedProducts, totalCartProducts: totalCartProducts})
+            }
+            else{
+            res.send("Product not found");
+            }
+        } else{
+            if(productDetails && relatedProducts){
+            res.render('Product/productDetails.ejs', {product: myProductDetails, relatedProducts: myRelatedProducts, totalCartProducts: 0})
+            }
+            else{
+            res.send("Product not found");
+            }
         }
-        else{
-            res.send("There is something error in logic");
-        }
+        
 
     } catch(err){
         res.send(err);
@@ -177,7 +214,7 @@ app.get("/seller", (req, res)=>{
     let allProducts = 'select * from Products';
     try{
       connection.query(allProducts, (err, result)=>{
-        res.render('seller.ejs', {result})
+        res.render('Seller/seller.ejs', {result})
       })
     }catch(err){
         res.send(err);
@@ -208,15 +245,16 @@ app.post("/seller/add", (req, res)=>{
 })
 
 // // Adding product to cart using add to cart button
-app.post('/product/add/:id', (req, res)=>{
+app.post('/product/add/:id', isLoggedIn, (req, res)=>{
     let productId = req.params.id;
-    let addToCartQuery = 'insert into Cart(productId) values (?)';
+    let user = res.locals.currUser;
+    let addToCartQuery = 'insert into Cart(userId,productId) values (?, ?)';
     try{
-        connection.query(addToCartQuery, [productId], (err, result)=>{
+        connection.query(addToCartQuery, [user.userId, productId], (err, result)=>{
             if(err){
                 res.send("There is something error in adding product to cart using add to cart button");
             } else{
-                res.redirect(`/product/${productId}`);
+                res.redirect(`/product/all`);
             }
         })
     } catch(err){
@@ -305,24 +343,14 @@ app.post('/product/user/signup', async (req, res)=>{
 })
 
 
-app.get('/product/user/login/failed', (req, res)=>{
-    req.flash("loginError", "Email or password incorrect");
-    res.locals.message = req.flash("loginError");
-    res.render('includes/flash.ejs')
-});
-
-app.get('/product/user/login/successful', (req, res)=>{
-    req.flash("loginSuccessful", "User Login Successful");
-    res.locals.message = req.flash("loginSuccessful");
-    res.send("user login successfully");
-})
-
-
-app.post('/product/user/login', passport.authenticate('local', {
-    successRedirect: '/product',
-    failureRedirect: '/product/user/login/failed',
+app.post('/product/user/login', saveRedirectUrl, passport.authenticate('local', {
+    failureRedirect: '/user/login',
     failureFlash: true
-}))
+}), (req, res)=>{
+    req.flash("success", "User Login Successful");
+    let redirectUrl = res.locals.redirectUrl || "/product";
+    res.redirect(redirectUrl);
+})
 
 
 // If any route doesn't match

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../public/css/sellerStyle.css">
 </head>
 <body>
-    <%-include('includes/sellerHeader.ejs')%>
+    <%-include('../includes/sellerHeader.ejs')%>
 
     <div class="mainBox">
 
@@ -38,35 +38,7 @@
             <div class="opt1Box optBox">
                 <form method="POST" action="/seller/add">
                 <p>Product Image</p>
-
-                <!-- <div class="imageInputBox">
-                <input type="file" id="fileInput" style="display:none;">
-                <label for="fileInput">
-                    <img src="https://www.pngplay.com/wp-content/uploads/8/Upload-Icon-Logo-Transparent-Free-PNG.png" class="uploadImage">
-                    <p>Upload</p>
-                </label>
-
-                 <input type="file" id="fileInput" style="display:none;">
-                <label for="fileInput">
-                    <img src="https://www.pngplay.com/wp-content/uploads/8/Upload-Icon-Logo-Transparent-Free-PNG.png" class="uploadImage">
-                    <p>Upload</p>
-                </label>
-
-
-                 <input type="file" id="fileInput" style="display:none;">
-                <label for="fileInput">
-                    <img src="https://www.pngplay.com/wp-content/uploads/8/Upload-Icon-Logo-Transparent-Free-PNG.png" class="uploadImage">
-                    <p>Upload</p>
-                </label>
-
-
-                 <input type="file" id="fileInput" style="display:none;">
-                <label for="fileInput">
-                    <img src="https://www.pngplay.com/wp-content/uploads/8/Upload-Icon-Logo-Transparent-Free-PNG.png" class="uploadImage">
-                    <p>Upload</p>
-                </label>
-                </div> -->
-
+                
                 <div class="imageInputs">
 
                 <input type="text" placeholder="Image1 URL" class="productInputs" name="product[image1URL]"required>

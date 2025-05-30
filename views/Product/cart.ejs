@@ -12,9 +12,13 @@
 </head>
 <body>
     
-    <%- include('includes/header.ejs')%>
+    <%- include('../includes/header.ejs')%>
+
+    <%-include("../includes/flash.ejs")%>
 
     <main class="homeMainSection">
+
+        
 
         <div class="cartMainSection">
 
@@ -137,59 +141,7 @@
 
     </main>
 
-    <%- include('includes/footer.ejs')%>
-
-    <!-- <script>
-
-    // Payment Wise Button 
-    let paymentMethodSelect = document.getElementsByClassName('paymentMethod')[0];
-    let placeOrderBtn = document.getElementsByClassName('placeOrderBtn')[0];
-    let onlinePaymentBtn = document.getElementsByClassName('onlinePaymentBtn')[0];
-
-    if (paymentMethodSelect && paymentMethodSelect.tagName === 'SELECT') {
-    paymentMethodSelect.addEventListener('change', function() {
-        let selectedValue = this.value;
-
-        // Get the text of the newly selected option
-        let selectedOptionText = this.options[this.selectedIndex].innerText;
-
-        // Your conditional logic based on the selected value
-        if (selectedValue === 'Online Payment') {
-           onlinePaymentBtn.style.display="inline";
-           placeOrderBtn.style.display="none";
-        } else if (selectedValue === 'Cash On Delivery') {
-            placeOrderBtn.style.display="inline";
-            onlinePaymentBtn.style.display="none";
-        }
-    });
-
-
-    // Change Address functionality
-    let changeAddressBtn = document.getElementsByClassName("changeAddressBtn")[0];
-    let changeAddressBox = document.getElementsByClassName("changeAddressBox")[0];
-    changeAddressBtn.addEventListener("click", ()=>{
-        if(changeAddressBox.style.display=="none"){
-            changeAddressBox.style.display="inline-block";
-        }else{
-            changeAddressBox.style.display="none";
-        }
-    })
-}
-
-
-
-    // Cart Product Quantity option logic
-    const mySelect = document.getElementsByClassName("cartProductQuantity");
-    Array.from(mySelect).forEach((slt, index)=>{
-        slt.addEventListener('change', function(){
-            this.form.submit();
-    })
-    })
-
-    
-
-  
-    </script> -->
+    <%- include('../includes/footer.ejs')%>
 
 <script>
 // Payment Wise Button 

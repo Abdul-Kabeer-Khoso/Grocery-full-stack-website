@@ -6,15 +6,21 @@
     <title>Grocify</title>
     <style>
         .flashBox{
+            width: 300px;
+            height: auto;
             font-family: "Varela Round", sans-serif;
             padding: 10px;
             background-color: rgb(245, 104, 104);
             color: black;
             border-radius: 6px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
+            position: absolute;
+            top: 67px;
+            left: 37%;
+            z-index: 4;
         }
         .flashBox p{
             margin: 0 35px 0 0;
@@ -26,13 +32,21 @@
 </head>
 <body>
 
-    <%if(error && error.length>0) {%>
+    <%if(success && success.length>0) {%>
+    <div class="flashBox" style="background-color: #7ee9b7">
+        <p><%=success%></p>
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+    <%} else if(error && error.length>0) {%>
     <div class="flashBox">
-
         <p><%=error%></p>
         <i class="fa-solid fa-xmark"></i>
     </div>
     <%}%>
+
+  
+
+    
 
     <script>
         let crossIcon = document.getElementsByClassName("fa-xmark")[0];
