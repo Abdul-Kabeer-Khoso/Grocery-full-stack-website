@@ -20,28 +20,28 @@
         <div class="newAddressFormBox">
             <h1 class="newAddressHeading">Add Shipping <span>Address</span></h1>
 
-            <form class="newAddressForm">
+            <form method="POST" action="/address/add" class="newAddressForm">
 
                 <div class="formInnerBox">
-                <input type="text" placeholder="First Name">
-                <input type="text" placeholder="Last Name" >
+                <input type="text" placeholder="First Name" name="address[firstName]" required>
+                <input type="text" placeholder="Last Name" name="address[lastName]" required>
                 </div>
 
-                <input type="email" placeholder="Email Address" class="inputFullSize">
+                <input type="email" placeholder="Email Address" class="inputFullSize" name="address[email]" required>
 
-                <input type="text" placeholder="Street" class="inputFullSize">
+                <input type="text" placeholder="Street" class="inputFullSize" name="address[street]" required>
 
                 <div class="formInnerBox">
-                <input type="text" placeholder="City">
-                <input type="text" placeholder="State">
+                <input type="text" placeholder="City" name="address[city]" required>
+                <input type="text" placeholder="State" name="address[state]" required>
                 </div>
 
                 <div class="formInnerBox">
-                <input type="text" placeholder="Zip Code">
-                <input type="text" placeholder="Country">
+                <input type="text" placeholder="Zip Code" name="address[zipCode]" required>
+                <input type="text" placeholder="Country" name="address[country]" required>
                 </div>
 
-                <input type="text" placeholder="Phone" class="inputFullSize">
+                <input type="text" placeholder="Phone" class="inputFullSize" name="address[phone]" required>
 
                 <button class="saveAddressBtn">SAVE ADDRESS</button>
             </form>

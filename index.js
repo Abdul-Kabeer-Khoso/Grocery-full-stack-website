@@ -140,12 +140,14 @@ app.get("/product/all", async (req, res)=>{
 })
 
 // //Show Cart 
-app.get("/product/cart", isLoggedIn,  (req, res)=>{
+app.get("/product/cart", isLoggedIn, async (req, res)=>{
     let user = res.locals.currUser;
+    let userAddress = 'select * from address where userId = ?';
     let getCartProductQuery = 'SELECT  p.productId,  p.productName, p.newPrice, p.productImage1, c.productQuantity FROM  Cart c JOIN  Products p ON c.productId = p.productId WHERE c.userId = ?;';
     try{
-        connection.query(getCartProductQuery, [user.userId], (err, result)=>{
-         let  products = result.map(product => {
+        let [address] = await connection.promise().query(userAddress, [user.userId]);
+        let [cartProducts] = await connection.promise().query(getCartProductQuery, [user.userId]);
+        let  products = cartProducts.map(product => {
             const totalPricePerItem = product.newPrice * product.productQuantity;
             return {
                 ...product,
@@ -157,20 +159,53 @@ app.get("/product/cart", isLoggedIn,  (req, res)=>{
             const price = prices.reduce((sum, price)=> sum + price, 0);
             const tax = price * 0.02;
             const totalPrice = tax + price;
-            if(err){
-                res.send("There is error in query of showing cart product");
-            } else{
-                res.render('Product/cart.ejs', {products: products, price: price, tax: tax.toFixed(1), totalPrice: totalPrice.toFixed(1), totalCartProducts: productLength });
-            }
-        })
-    } catch (err){
+            res.render('Product/cart.ejs', {products: products, price: price, tax: tax.toFixed(1), totalPrice: totalPrice.toFixed(1), totalCartProducts: productLength, userAddress: address[0]});
+        } catch (err){
         res.send("There is something error in showing cart product");
     }
 })
 
 // //add new address
-app.get("/product/address", (req, res)=>{
-    res.render('Product/addAddress.ejs');
+app.get("/product/address", isLoggedIn, (req, res)=>{
+    let user= res.locals.currUser;
+    let productNumberQuery = 'select * from Cart where userId = ?';
+    try{
+        if(user){
+            connection.query(productNumberQuery, [user.userId], (err, result)=>{
+                let totalCartProducts = result.length;
+
+                if(err){
+                    res.send(err);
+                }
+                else{
+                    res.render('Product/addAddress.ejs', {totalCartProducts: totalCartProducts})
+                }
+            })
+        }
+        else{
+            res.render('Product/addAddress.ejs', {totalCartProducts: 0})
+        }
+    } catch(err){
+        res.send(err);
+    } 
+})
+
+//Save address
+app.post('/address/add',  (req, res)=>{
+    let address = req.body.address;
+    let user = res.locals.currUser;
+    let saveAddress = 'insert into Address(userId, firstName, lastName, email, street, city, state, zipcode, country, phone ) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    try{
+        connection.query(saveAddress, [user.userId, address.firstName, address.lastName, address.email, address.street, address.city, address.state, address.zipCode, address.country, address.phone], (err, result)=>{
+            if(err){
+                res.send(err);
+            } else{
+                res.send("Address save successfully");
+            }
+        })
+    } catch(err){
+        res.send(err);
+    }
 })
 
 // // Details of Product

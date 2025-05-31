@@ -689,7 +689,7 @@ p{
 .cartSectionBox2{
     background-color:#f6f3f4;
     width: 30%;
-    height: 380px;
+    min-height: auto;
     aspect-ratio: 1/1;
     padding: 1.3vw;
     position: relative;
@@ -728,7 +728,8 @@ p{
 }
 
 .shippingAddress{
-    color: #6a7282a2;
+    font-size: 14px;
+    color: #151616a2;
 }
 
 .changeAddressBtn{
