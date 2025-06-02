@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../public/css/homeStyle.css">
+    <link rel="stylesheet" href="../public/css/orderStyle.css">
+    <title>Grocify</title>
+</head>
+<body>
+    <%-include("../includes/header.ejs")%>
+
+    <main class="homeMainSection">
+            <h2 class="orderTitle">MY ORDERS</h2>
+            <div class="tableBox">
+            <table class="orderTable">
+
+                <thead>
+                    <tr>
+                        <td class="orderIdCol">Order Id: 3412433124324</td>
+                        <td class="paymentCol">Payment: COD</td>
+                        <td class="amountCol">Total Amount: $170</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+
+                        <td>
+                        <div class="orderItemBox">
+                            <div class="orderItemImage">
+                                <img src="https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/tzibj2ntsnbn4e0u5kwv.png">
+                            </div>
+                            <div class="orderItemHeading">
+                                <p class="orderItemTitle">Potato 500g</p>
+                                <p class="orderItemCategory">Category: Vegetables</p>
+                            </div>
+                        </div>
+                        </td>
+
+                        <td>
+                            <div class="orderExtraDetailsBox">
+                                <p>Quantity: 1</p>
+                                <p>Status: Order Placed</p>
+                                <p>Date: 06/01/2025</p>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="orderItemPriceBox">
+                            <p class="orderItemPrice">Amount: $35</p>
+                            </div>
+                        </td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+            </div>
+    </main>
+
+    <%-include("../includes/footer.ejs")%>
+    
+</body>
+</html>

@@ -49,6 +49,7 @@ const {isLoggedIn, saveRedirectUrl} = require("./middleware.js");
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
+const { totalmem } = require('os');
 
 
 app.use(session({
@@ -115,6 +116,30 @@ app.get("/product", (req, res)=>{
         res.send("There is something error in home page")
     }
 });
+
+//Orders
+app.get("/orders", (req, res)=>{
+    let user = res.locals.currUser;
+    let productNumberQuery = 'select * from Cart where userId = ?';
+    try{
+        if(user){
+            connection.query(productNumberQuery, [user.userId], (err, result)=>{
+                let totalCartProducts = result.length;
+                if(err){
+                    res.send(err);
+                }
+                else{       
+                res.render("Product/order.ejs", {totalCartProducts: totalCartProducts});
+                }
+            })
+        }
+        else{
+            res.render("Product/order.ejs", {totalCartProducts: 0})
+        }
+    } catch(err){
+        res.send(err);
+    }
+})
 
 //show all products
 app.get("/product/all", async (req, res)=>{

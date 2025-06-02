@@ -1,0 +1,93 @@
+.orderTitle{
+    width: 82%;
+    color:  #364153;
+}
+
+.tableBox{
+    width: 82%;
+    display: flex;
+    justify-content: left;
+}
+
+thead{
+    height: 50px;
+    color: #364153;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.orderTable{
+    width: 81%;
+    border: 0.5px solid #6a7282a2;
+    border-radius: 10px;
+    padding: 0px 10px 10px 10px;
+}
+
+.orderIdCol{
+    width: 55%;
+}
+
+.amountCol{
+    width: 20%;
+}
+
+.orderItemBox{
+    width: auto;
+    display: flex;
+    align-items: center;   
+}
+
+.orderItemImage{
+    width: 14%;
+    height: auto;
+    aspect-ratio: 1/1;
+    background-color: #4fbf8b1e;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.orderItemImage img{
+    width: 80%;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.orderItemHeading{
+    margin-left: 12px;
+}
+
+.orderItemTitle{
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+
+.orderItemCategory{
+    font-size: 14px;
+    color: #365143;
+}
+
+.orderExtraDetailsBox{
+    width: auto;
+}
+
+.orderExtraDetailsBox p{
+    font-size: 14px;
+    color: #364153;
+}
+
+.orderItemPriceBox{
+    display: flex;
+    justify-content: center;
+}
+
+.orderItemPrice{
+    color: #4fbf8b;
+    font-size: 16px;
+    font-weight: 600;
+}

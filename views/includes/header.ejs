@@ -118,108 +118,6 @@
             font-size: 15px;
             margin-left: 10px;
         }
-/* 
-        .loginOuterBox{
-            width: 100%;
-            height: 100%;
-            background-color: rgba(41, 38, 41, 0.397);
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 2;
-            display: none;
-        }
-
-        .loginInnerBox{
-            width: 270px;
-            height: auto;
-            padding: 30px 20px;
-            background-color: white;
-            border-radius: 8px;
-            position: fixed;
-            top: 12vw;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            left: 40%;
-        }
-
-        .newUserForm{
-            width: 100%;
-            height: auto;
-            font-family: "Varela Round", sans-serif;
-            font-size: 12px;
-            color: #364153;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-
-        .loginInnerBox h2{
-            margin: 0px 0px 15px 0px;
-            color:#4fbf8b;
-        }
-
-        .loginInnerBox h2 span{
-            color:#364153;
-        }
-
-        .newUserForm label{
-            width: 100%;
-        }
-
-        .newUserForm input, .newUserFormBtn{
-            width: 92%;
-            padding: 10px;
-            border-radius: 3.5px;
-            border: 0.5px solid rgb(197, 197, 197);
-            font-family: "Varela Round", sans-serif;
-            font-size: 12px;
-            outline: none;
-        }
-
-        .newUserForm input{
-            margin-top: 6px;
-            margin-bottom: 12px;
-        }
-
-        .formTextLinks .formRedirection{
-            color:#4fbf8b;
-            transition-property: all;
-            transition-duration: 0.3s;
-            transition-timing-function: ease-in-out;
-        }
-
-        .newUserForm p, .formRedirection{
-            text-decoration: none;
-            font-family: "Varela Round", sans-serif;
-            font-size: 13px;
-            color: #364153;
-            margin: 10px 0px 10px 0px;
-        }
-
-        .newUserFormBtn{
-            width: 100%;
-            background-color: #4fbf8b;
-            color: white;
-            border: none;
-            font-size: 14px;
-        }
-
-        .signupTitle, .signupForm{
-            display: none;
-        }
-
-        .loginForm{
-            display: flex;
-        }
-
-        .loginTitle{
-            display: inline;
-        } */
 
         .navDetailsOptionsBox{
             width: 100px;
@@ -322,7 +220,7 @@
             <div class="navLoginDetails">
             </div>
             <div class="navDetailsOptionsBox">
-                <a href="#" class="navDetailsOption">My Orders</a>
+                <a href="/orders" class="navDetailsOption">My Orders</a>
                 <a href="/logout" class="navDetailsOption">Logout</a>
             </div>
             <% } else{%>
@@ -331,45 +229,7 @@
             </form>
             <%}%>
         </div>
-<!-- 
-        <div class="loginOuterBox">
-            <div class="loginInnerBox">
-                <h2>User <span class="loginTitle">Login</span>  <span class="signupTitle">Sign Up</span></h2>
-                <form class="loginForm newUserForm" method="POST" action="/product/user/login">
-                    <label for="email"> Email <br>
-                    <input type="email" placeholder="type here" id="email" name="email" required>
-                    </label>
 
-                    <label for="password">Password <br>
-                    <input type="password" placeholder="type here" id="password" name="password" required>
-                    </label>
-                    <p class="formTextLinks">
-                        Create an account? <span class="formRedirection">click here</span>
-                    <p>
-                    <button class="newUserFormBtn">Login</button>
-                </form>
-
-
-                <form method="POST" action="/product/user/signup" class="signupForm newUserForm" >
-
-                    <label for="username"> UserName <br>
-                    <input type="text" placeholder="type here" id="username" name="user[username]" required>
-                    </label>
-
-                    <label for="email2"> Email <br>
-                    <input type="email" placeholder="type here" id="email2" name="user[email]" required>
-                    </label>
-
-                    <label for="password2">Password <br>
-                    <input type="password" placeholder="type here" id="password2" name="user[password]" required>
-                    </label>
-                    <p class="formTextLinks">
-                        Already have account? <a class="formRedirection">click here</a>
-                    <p>
-                    <button class="newUserFormBtn">Create Account</button>
-                </form>
-            </div>
-        </div> -->
     </header>
 
 
@@ -385,54 +245,7 @@
             visible = !visible;
         })
         }
-       
-        // Get elements
-        // const loginBtn = document.querySelector('.loginBtn');
-        // const loginOuterBox = document.querySelector('.loginOuterBox');
-
-        // // Show modal when login button is clicked
-        // loginBtn.addEventListener('click', () => {
-        // loginOuterBox.style.display = 'flex';
-        //     document.body.classList.add('modal-open');
-        // });
-
-        // // Close modal when clicking outside the loginInnerBox
-        // loginOuterBox.addEventListener('click', (e) => {
-        //     if (e.target === loginOuterBox) {
-        //         loginOuterBox.style.display = 'none';
-        //         document.body.classList.remove('modal-open');
-        //     }
-        // });
-
-        // //Change form by clicking
-        // let loginForm = document.getElementsByClassName('loginForm')[0];
-        // let signupForm = document.getElementsByClassName('signupForm')[0];
-
-        // let loginTitle = document.getElementsByClassName('loginTitle')[0];
-        // let signupTitle = document.getElementsByClassName('signupTitle')[0];
-
-        // let isLogin = true;
-
-        // let formAnchor = document.getElementsByClassName('formRedirection');
-        // Array.from(formAnchor).forEach((a)=>{
-        //     a.addEventListener('click', ()=>{
-        //         console.log("event listener is working");
-        //         if(isLogin){
-        //             loginForm.style.display="none";
-        //             loginTitle.style.display="none";
-        //             signupForm.style.display="flex";
-        //             signupTitle.style.display="inline";
-        //             isLogin=false;
-        //         } else{
-        //              signupForm.style.display="none";
-        //              signupTitle.style.display="none";
-        //              loginForm.style.display="flex";
-        //              loginTitle.style.display="inline";
-        //              isLogin=true;
-        //             }
-        //         })
-        // })
-
+    
         
 
 
