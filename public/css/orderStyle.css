@@ -17,15 +17,24 @@ thead{
 }
 
 
+
 .orderTable{
     width: 81%;
-    border: 0.5px solid #6a7282a2;
-    border-radius: 10px;
+    border-collapse: collapse;
     padding: 0px 10px 10px 10px;
+    margin-bottom: 50px;
+}
+
+tbody tr{
+    border-top: 0.5px solid #6a7282a2 !important;
+    height: 100px;
 }
 
 .orderIdCol{
     width: 55%;
+    font-size: 14px;
+    font-weight: 600;
+    color: #365143;
 }
 
 .amountCol{
@@ -90,4 +99,30 @@ thead{
     color: #4fbf8b;
     font-size: 16px;
     font-weight: 600;
+}
+
+.noOrderImage{
+    width: 82%;
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.noOrderImage h1{
+    position: absolute;
+    top: 0px;
+    z-index: 5;
+    font-size: 2vw;
+    color: rgb(238, 51, 51);
+}
+
+.noOrderImage img{
+    width: 35%;
+    height: auto;
+    object-fit: cover;
+    margin-top: 20px;
 }

@@ -118,24 +118,39 @@ app.get("/product", (req, res)=>{
 });
 
 //Orders
-app.get("/orders", (req, res)=>{
+app.get("/orders", isLoggedIn, async (req, res)=>{
     let user = res.locals.currUser;
     let productNumberQuery = 'select * from Cart where userId = ?';
+    let orderQuery = 'select * from Orders where userId = ?';
     try{
-        if(user){
-            connection.query(productNumberQuery, [user.userId], (err, result)=>{
-                let totalCartProducts = result.length;
-                if(err){
-                    res.send(err);
-                }
-                else{       
-                res.render("Product/order.ejs", {totalCartProducts: totalCartProducts});
-                }
-            })
-        }
-        else{
-            res.render("Product/order.ejs", {totalCartProducts: 0})
-        }
+            let productNumber = await connection.promise().query(productNumberQuery, [user.userId]);
+            let totalCartProducts = productNumber[0].length;
+            let ordersList = await connection.promise().query(orderQuery, [user.userId]);
+            let orders = ordersList[0];
+            let orderId = ordersList[0][0].orderId;
+            res.render("Product/order.ejs", {totalCartProducts: totalCartProducts, orders: orders, orderId: orderId});   
+    } catch(err){
+        res.send(err);
+    }
+})
+
+// Place order
+app.post("/placeOrder", isLoggedIn,  (req, res)=>{
+    let productIds = req.body.productId;
+    let user = res.locals.currUser;
+    let orderId = uuidv4();
+    console.log(orderId);
+    const values = productIds.map(pid => [orderId ,user.userId, pid]);
+    let addOrderQuery = 'insert into Orders(orderId ,userId, productId) Values ?';
+    try{
+        connection.query(addOrderQuery, [values], (err, result)=>{
+            if(err){
+                res.send(err);
+            }
+            else{
+                res.redirect("/orders");
+            }
+        })
     } catch(err){
         res.send(err);
     }

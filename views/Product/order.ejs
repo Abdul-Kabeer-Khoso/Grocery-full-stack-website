@@ -16,20 +16,21 @@
 
     <main class="homeMainSection">
             <h2 class="orderTitle">MY ORDERS</h2>
+            <%if(orders){%> 
             <div class="tableBox">
             <table class="orderTable">
-
+            
                 <thead>
                     <tr>
-                        <td class="orderIdCol">Order Id: 3412433124324</td>
+                        <td class="orderIdCol">Order Id: <%=orderId%></td>
                         <td class="paymentCol">Payment: COD</td>
                         <td class="amountCol">Total Amount: $170</td>
                     </tr>
                 </thead>
 
                 <tbody>
+                    
                     <tr>
-
                         <td>
                         <div class="orderItemBox">
                             <div class="orderItemImage">
@@ -57,10 +58,17 @@
                         </td>
 
                     </tr>
+
                 </tbody>
 
             </table>
             </div>
+            <%} else{ %>
+            <div class="noOrderImage">
+                <h1>NO ORDER</h1>
+                <img src="https://cdni.iconscout.com/illustration/premium/thumb/man-receiving-canceled-orders-back-illustration-download-in-svg-png-gif-file-formats--damaged-parcel-product-delivery-online-pack-illustrations-3718471.png">
+            </div>
+            <%}%>
     </main>
 
     <%-include("../includes/footer.ejs")%>
