@@ -27,7 +27,7 @@ thead{
 
 tbody tr{
     border-top: 0.5px solid #6a7282a2 !important;
-    height: 100px;
+    height: 120px;
 }
 
 .orderIdCol{
@@ -48,7 +48,7 @@ tbody tr{
 }
 
 .orderItemImage{
-    width: 14%;
+    width: 20%;
     height: auto;
     aspect-ratio: 1/1;
     background-color: #4fbf8b1e;
@@ -71,8 +71,8 @@ tbody tr{
 }
 
 .orderItemTitle{
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: normal;
+    font-size: 19.5px;
     margin-bottom: 3px;
 }
 

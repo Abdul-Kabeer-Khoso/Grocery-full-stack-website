@@ -16,7 +16,7 @@
 
     <main class="homeMainSection">
             <h2 class="orderTitle">MY ORDERS</h2>
-            <%if(orders){%> 
+            <%if(orderId){%> 
             <div class="tableBox">
             <table class="orderTable">
             
@@ -29,16 +29,16 @@
                 </thead>
 
                 <tbody>
-                    
+                    <%for(product of products) {%>
                     <tr>
                         <td>
                         <div class="orderItemBox">
                             <div class="orderItemImage">
-                                <img src="https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/tzibj2ntsnbn4e0u5kwv.png">
+                                <img src="<%=product.productImage1%>">
                             </div>
                             <div class="orderItemHeading">
-                                <p class="orderItemTitle">Potato 500g</p>
-                                <p class="orderItemCategory">Category: Vegetables</p>
+                                <p class="orderItemTitle"><%=product.productName%></p>
+                                <p class="orderItemCategory"><%=product.productCategory%></p>
                             </div>
                         </div>
                         </td>
@@ -53,12 +53,12 @@
 
                         <td>
                             <div class="orderItemPriceBox">
-                            <p class="orderItemPrice">Amount: $35</p>
+                            <p class="orderItemPrice">Amount: $<%=product.newPrice%></p>
                             </div>
                         </td>
 
                     </tr>
-
+                    <%}%>
                 </tbody>
 
             </table>

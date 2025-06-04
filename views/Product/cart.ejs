@@ -94,7 +94,7 @@
             <p class="deliveryAddressTitle cartSectionBox2Titles">DELIVERY ADDRESS</p>
 
             <div class="addressBox">
-                <%if(currUser) { %>
+                <%if(userAddress) { %>
                     <p class="shippingAddress"><%=userAddress.street%>, <%=userAddress.city%>, <%=userAddress.state%>, <%=userAddress.country%></p>
                 <%} else{ %>
                     <p class="shippingAddress">No addresss</p>

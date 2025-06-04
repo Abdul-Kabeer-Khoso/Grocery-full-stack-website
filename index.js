@@ -122,13 +122,37 @@ app.get("/orders", isLoggedIn, async (req, res)=>{
     let user = res.locals.currUser;
     let productNumberQuery = 'select * from Cart where userId = ?';
     let orderQuery = 'select * from Orders where userId = ?';
+    let orderProductsQuery = 'select * from Products where productId = ?';
+    let allOrderProducts = [];
+    let orderProductsQuantity = [];
     try{
             let productNumber = await connection.promise().query(productNumberQuery, [user.userId]);
             let totalCartProducts = productNumber[0].length;
             let ordersList = await connection.promise().query(orderQuery, [user.userId]);
             let orders = ordersList[0];
-            let orderId = ordersList[0][0].orderId;
-            res.render("Product/order.ejs", {totalCartProducts: totalCartProducts, orders: orders, orderId: orderId});   
+            let orderId;
+            if(ordersList[0][0]){
+                orderId = ordersList[0][0].orderId;
+            }
+
+            
+            if(orders[0]){
+                for(order of orders){
+                let productId = order.productId;
+                let orderProduct = await connection.promise().query(orderProductsQuery, [productId]);
+                allOrderProducts.push(...orderProduct[0]);
+            }
+            }
+            
+            
+            if(productNumber[0]){
+                for(product of productNumber[0]){
+                let productQty = product.productQuantity;  
+                orderProductsQuantity.push(productQty);
+            }
+            }
+
+            res.render("Product/order.ejs", {totalCartProducts: totalCartProducts, orders: orders, orderId: orderId, products: allOrderProducts});   
     } catch(err){
         res.send(err);
     }
