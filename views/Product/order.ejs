@@ -23,37 +23,37 @@
                 <thead>
                     <tr>
                         <td class="orderIdCol">Order Id: <%=orderId%></td>
-                        <td class="paymentCol">Payment: COD</td>
-                        <td class="amountCol">Total Amount: $170</td>
+                        <td class="paymentCol">Payment: <%=orders[0].paymentMethod%></td>
+                        <td class="amountCol">Total Amount: $<%=orderTotalPrice%></td>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <%for(product of products) {%>
+                    <%for(let i=0; i<orders.length; i++) {%>
                     <tr>
                         <td>
                         <div class="orderItemBox">
                             <div class="orderItemImage">
-                                <img src="<%=product.productImage1%>">
+                                <img src="<%=products[i].productImage1%>">
                             </div>
                             <div class="orderItemHeading">
-                                <p class="orderItemTitle"><%=product.productName%></p>
-                                <p class="orderItemCategory"><%=product.productCategory%></p>
+                                <p class="orderItemTitle"><%=products[i].productName%></p>
+                                <p class="orderItemCategory"><%=products[i].productCategory%></p>
                             </div>
                         </div>
                         </td>
 
                         <td>
                             <div class="orderExtraDetailsBox">
-                                <p>Quantity: 1</p>
+                                <p>Quantity: <%=orders[i].productQuantity%></p>
                                 <p>Status: Order Placed</p>
-                                <p>Date: 06/01/2025</p>
+                                <p>Date: <%=orders[i].orderDate%></p>
                             </div>
                         </td>
 
                         <td>
                             <div class="orderItemPriceBox">
-                            <p class="orderItemPrice">Amount: $<%=product.newPrice%></p>
+                            <p class="orderItemPrice">Amount: $<%=orders[i].productQuantity * products[i].newPrice%></p>
                             </div>
                         </td>
 

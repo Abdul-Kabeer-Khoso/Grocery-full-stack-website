@@ -124,7 +124,6 @@ app.get("/orders", isLoggedIn, async (req, res)=>{
     let orderQuery = 'select * from Orders where userId = ?';
     let orderProductsQuery = 'select * from Products where productId = ?';
     let allOrderProducts = [];
-    let orderProductsQuantity = [];
     try{
             let productNumber = await connection.promise().query(productNumberQuery, [user.userId]);
             let totalCartProducts = productNumber[0].length;
@@ -135,7 +134,6 @@ app.get("/orders", isLoggedIn, async (req, res)=>{
                 orderId = ordersList[0][0].orderId;
             }
 
-            
             if(orders[0]){
                 for(order of orders){
                 let productId = order.productId;
@@ -143,38 +141,61 @@ app.get("/orders", isLoggedIn, async (req, res)=>{
                 allOrderProducts.push(...orderProduct[0]);
             }
             }
-            
-            
-            if(productNumber[0]){
-                for(product of productNumber[0]){
-                let productQty = product.productQuantity;  
-                orderProductsQuantity.push(productQty);
-            }
+
+            let ordersQuantity = orders.map(val=>{
+                return val.productQuantity;
+            })
+
+            let productsPrice = allOrderProducts.map(val=>{
+                return val.newPrice;
+            })
+
+            let productTotalPrice=[];
+
+            for(let i=0; i<ordersQuantity.length; i++){
+                productTotalPrice[i]=ordersQuantity[i]*productsPrice[i];
             }
 
-            res.render("Product/order.ejs", {totalCartProducts: totalCartProducts, orders: orders, orderId: orderId, products: allOrderProducts});   
+            let ordersTotalPrice = 0;
+
+            for(let i=0; i<productTotalPrice.length; i++){
+                ordersTotalPrice+=productTotalPrice[i];
+            }
+
+
+
+
+            res.render("Product/order.ejs", {totalCartProducts: totalCartProducts, orders: orders, orderId: orderId, products: allOrderProducts, orderTotalPrice: ordersTotalPrice});   
     } catch(err){
         res.send(err);
     }
 })
 
 // Place order
-app.post("/placeOrder", isLoggedIn,  (req, res)=>{
+app.post("/placeOrder", isLoggedIn, async (req, res)=>{
     let productIds = req.body.productId;
-    let user = res.locals.currUser;
-    let orderId = uuidv4();
-    console.log(orderId);
-    const values = productIds.map(pid => [orderId ,user.userId, pid]);
-    let addOrderQuery = 'insert into Orders(orderId ,userId, productId) Values ?';
+    const user = res.locals.currUser;
+    const orderId = uuidv4();
+    const paymentMethod = req.body.paymentMethod;
+    const currentDate = new Date().toISOString().split('T')[0];
+    let deleteCartProducts = 'delete from Cart where productId IN (?)';
+    let cartQuery = 'select productId ,productQuantity from Cart where userId = ? AND productId IN (?)';
+    let addOrderQuery = 'insert into Orders(orderId ,userId, productId, productQuantity, orderDate, paymentMethod) Values ?';
     try{
-        connection.query(addOrderQuery, [values], (err, result)=>{
-            if(err){
-                res.send(err);
-            }
-            else{
-                res.redirect("/orders");
-            }
-        })
+        let [cartProducts] = await connection.promise().query(cartQuery, [user.userId, productIds])
+        const values = cartProducts.map(val=>[
+            orderId,
+            user.userId,
+            val.productId,
+            val.productQuantity,
+            currentDate,
+            paymentMethod,
+        ])
+
+        let [orders] = await connection.promise().query(addOrderQuery, [values]);
+        await connection.promise().query(deleteCartProducts, [productIds]);
+        res.redirect('/orders');
+
     } catch(err){
         res.send(err);
     }
