@@ -247,11 +247,12 @@ table .product{
     display: flex;
     align-items: center;
     border: 0.5px solid #6a7282a2;
-    border-radius: 10px;
+    border-radius: 7px;
     padding: 10px 12px;
     margin-top: 8px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
+
 
 .order .orderIconImage{
     width:11%;
@@ -266,8 +267,8 @@ table .product{
 }
 
 .orderProducts p{
-    font-size: 13px;
-    font-weight: bold;
+    font-size: 15px;
+    font-weight: 550;
 }
 
 .orderProducts .orderProductQuantity{
@@ -286,6 +287,16 @@ table .product{
     align-items:flex-start;
 }
 
+.orderAddress .orderUserAddress{
+    margin: 0;
+    color: #6a7282a2;
+}
+
+.orderAddress .orderUserName{
+    margin-left: 0;
+    font-weight: 500;
+}
+
 .orderUserName{
     font-weight: bold;
 }
@@ -293,6 +304,8 @@ table .product{
 .order .totalOrderPrice{
     width: 13%;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
 }
 
 .totalOrderPrice p{

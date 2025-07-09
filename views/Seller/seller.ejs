@@ -147,31 +147,30 @@
             <div class="opt3Box optBox">
                 <h2 class="orderHeading">Orders List</h2>
                 <div class="orderBox">
-                        <p class="orderId">Order Id: 4353467354523543</p>
+                    <% for(let i=0; i<orders.length; i++) {%>
                         <div class="order">
                                 <div class="orderIconImage">
                                     <img src="https://greencart-gs.vercel.app/assets/box_icon-eJIAYJwb.svg" >
                                 </div>
                                 <div class="orderProducts">
-                                    <p>Wheat 500g <span class="orderProductQuantity"> &nbsp; x 1</span></p>
-                                    <p>Fruit 1kg <span class="orderProductQuantity"> &nbsp; x 1</span></p>
-                                    <p>Tomato 2kg <span class="orderProductQuantity"> &nbsp; x 1</span></p>
-                                    <p>Carrot 500g <span class="orderProductQuantity"> &nbsp; x 1</span></p>
+                                    <% for(orderProduct of orders[i].products) {%>
+                                    <p> <%= orderProduct.name %><span class="orderProductQuantity"> &nbsp; x <%=orderProduct.quantity%></span></p>
+                                    <% } %>
                                 </div>
                                 <div class="orderAddress">
-                                    <p class="orderUserName">Abdul Kabeer</p>
-                                    <p class="orderUserAddress">Near Shikarpur road physical hostel IBA Sukkur, Naushahro Feroze, Sukkur, 67050,
-                                    Pakistan</p>                    
+                                    <p class="orderUserName"><%=orders[i].user%></p>
+                                    <p class="orderUserAddress"><%=orders[i].address%></p>                    
                                 </div>
                                 <div class="totalOrderPrice">
-                                    <p>$720</p>
+                                    <p>$<%=totalPrice[i].totalOrderValue %></p>
                                 </div>
                                 <div class="orderDetails">
-                                    <p>Method: <span class="orderMethod">COD</span></p>
-                                    <p>Date: <span class="orderDate">7/8/2025</span></p>
+                                    <p>Method: <span class="orderMethod"><%=orders[i].paymentMethod%></span></p>
+                                    <p>Date: <span class="orderDate"><%=orders[i].orderDate%></span></p>
                                     <p>Payment: <span class="orderPayment">Pending</span></p>
                                 </div>
                         </div>
+                        <% } %>
                 </div>
             </div>
         </div>

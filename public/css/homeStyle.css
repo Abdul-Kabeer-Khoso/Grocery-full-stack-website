@@ -601,8 +601,6 @@ p{
 }
 
 
-
-
 .cartProductQuantityOptions{
     border: none;
     outline: none;
@@ -669,7 +667,7 @@ p{
     text-align: center;
 }
 
-.cartCircleMark form button{
+.cartCircleMark button{
     background-color: white;
     border-radius: 50%;
     border: none;
@@ -901,6 +899,10 @@ button:hover{
 
 .changeAddressBox:hover{
     background-color: white;
+}
+
+.changeAddressBtn:hover{
+    cursor: pointer;
 }
 
 .addNewAddress:hover{

@@ -47,33 +47,32 @@
                             <div class="cartProductDetailsText">
                                 <p class="cartProductName"><%=product.productName%></p>
                                 <p class="cartProductWeight">Weight: N/A</p>
-                                <div class="cartProductQty">Qty: 
-                                <form method="POST" action="/product/<%=product.productId%>?_method=PATCH" class="myQtyForm">
-                                    <select class="cartProductQuantityOptions cartProductQuantity" name="quantity">
+                                <div class="cartProductQty">
+                                    Qty:
+                                    <select class="updateQty cartProductQuantityOptions cartProductQuantity" data-productid="<%= product.productId %>">
                                         <% for(let i=1; i<=9; i++) { %>
                                             <option value="<%=i%>" <%= i === product.productQuantity ? 'selected' : '' %>> <%=i%> </option>
                                         <% } %>
-                                    </select> 
-                                </form>
-                            </div>
+                                    </select>
+                                </div>
                                 
                             </div>
                         </div>
+
                         </td>
 
                         <td class="cartTableProductDetails">
                             <p class="cartTableProductPrice">$<%=product.totalPricePerItem%></p>
                         </td>
 
-                        <td>
+                       <td>
                             <div class="cartCircleMark">
-                            <form method="POST" action="/product/<%=product.productId%>?_method=DELETE">
-                            <button>
-                            <i class="fa-regular fa-circle-xmark fa-xl" style="color: #ff0000;"></i>
-                            </button>
-                             </form>   
+                                <button class="deleteProductBtn" data-productid="<%=product.productId%>">
+                                    <i class="fa-regular fa-circle-xmark fa-xl" style="color: #ff0000;"></i>
+                                </button>
                             </div>
                         </td>
+
                     </tr>
 
                     <% } %>
@@ -99,7 +98,7 @@
                 <%} else{ %>
                     <p class="shippingAddress">No addresss</p>
                 <%}%>  
-                <button class="changeAddressBtn">Change</button>
+                <p class="changeAddressBtn">Change</p>
             </div>
 
             
@@ -183,7 +182,7 @@ if (paymentMethodSelect && paymentMethodSelect.tagName === 'SELECT') {
     });
 }
 
-// Cart Product Quantity option logic (AJAX version)
+
 // Cart Product Quantity option logic (AJAX version)
 const quantitySelects = document.querySelectorAll(".cartProductQuantity");
 
@@ -231,6 +230,61 @@ quantitySelects.forEach(select => {
         }
     });
 });
+
+
+
+// Quantity change using fetch (no inner form needed)
+document.querySelectorAll(".updateQty").forEach(select => {
+    select.addEventListener("change", async function () {
+        const productId = this.dataset.productid;
+        const quantity = this.value;
+
+        try {
+            const res = await fetch(`/product/${productId}?_method=PATCH`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: `quantity=${quantity}`
+            });
+
+            if (res.redirected) {
+                window.location.href = res.url;
+            } else {
+                console.log(`Updated quantity for product ${productId}`);
+                location.reload(); // reload to reflect new total
+            }
+        } catch (err) {
+            console.error("Quantity update failed:", err);
+        }
+    });
+});
+
+
+// Delete product from cart using fetch
+document.querySelectorAll('.deleteProductBtn').forEach(button => {
+    button.addEventListener('click', async (e) => {
+        e.preventDefault(); // stop parent form from submitting
+        const productId = button.dataset.productid;
+
+
+        try {
+            const res = await fetch(`/product/${productId}?_method=DELETE`, {
+                method: "POST",
+            });
+
+            if (res.redirected) {
+                window.location.href = res.url; // redirect if backend redirects
+            } else {
+                location.reload(); // fallback to reload
+            }
+        } catch (err) {
+            console.error("Delete failed:", err);
+        }
+    });
+});
+
+
 
 
 </script>

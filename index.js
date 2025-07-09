@@ -121,17 +121,27 @@ app.get("/product", (req, res)=>{
 app.get("/orders", isLoggedIn, async (req, res)=>{
     let user = res.locals.currUser;
     let productNumberQuery = 'select * from Cart where userId = ?';
-    let orderQuery = 'select * from Orders where userId = ?';
+    
+    let orderIdsQuery = 'select distinct orderId from Orders where userId = ?';
+    let orderQuery = 'select * from Orders where orderId IN (?)'
     let orderProductsQuery = 'select * from Products where productId = ?';
+
     let allOrderProducts = [];
     try{
             let productNumber = await connection.promise().query(productNumberQuery, [user.userId]);
             let totalCartProducts = productNumber[0].length;
-            let ordersList = await connection.promise().query(orderQuery, [user.userId]);
-            let orders = ordersList[0];
+
+            let orderIds = await connection.promise().query(orderIdsQuery, user.userId);
+            let newOrderIds = orderIds[0].map(val => val.orderId);
+
+            let products = await connection.promise().query(orderQuery, [newOrderIds]);
+            let orders = products[0];
+
+
             let orderId;
-            if(ordersList[0][0]){
-                orderId = ordersList[0][0].orderId;
+
+            if(products[0][0]){
+                orderId = products[0][0].orderId;
             }
 
             if(orders[0]){
@@ -162,10 +172,7 @@ app.get("/orders", isLoggedIn, async (req, res)=>{
                 ordersTotalPrice+=productTotalPrice[i];
             }
 
-
-
-
-            res.render("Product/order.ejs", {totalCartProducts: totalCartProducts, orders: orders, orderId: orderId, products: allOrderProducts, orderTotalPrice: ordersTotalPrice});   
+            res.render("Product/order.ejs", {totalCartProducts: totalCartProducts, orders: orders, orderId: newOrderIds, products: allOrderProducts, orderTotalPrice: ordersTotalPrice});   
     } catch(err){
         res.send(err);
     }
@@ -330,12 +337,62 @@ app.get("/product/:id", isLoggedIn, async (req, res)=>{
 })
 
 // //Show Seller Products
-app.get("/seller", (req, res)=>{
+app.get("/seller", async (req, res)=>{
     let allProducts = 'select * from Products';
+    let orderIdQuery = 'select distinct orderId from Orders';
+    let ordersQuery = `
+       SELECT 
+        o.*, 
+        p.productName,
+        a.firstName, a.lastName, a.street, a.city, a.state, a.zipCode, a.country
+        FROM Orders o
+        JOIN Products p ON o.productId = p.productId
+        JOIN Address a ON o.userId = a.userId
+        WHERE o.orderId IN (?)`;
+    let totalValueQuery = `
+        SELECT 
+        orderId,
+        SUM( o.productQuantity * p.newPrice) AS totalOrderValue
+        FROM orders o
+        JOIN products p ON o.productId = p.productId
+        GROUP BY orderId`;
+
     try{
-      connection.query(allProducts, (err, result)=>{
-        res.render('Seller/seller.ejs', {result})
-      })
+      let orderId = await connection.promise().query(orderIdQuery);
+      let newOrderId = orderId[0].map(val=>val.orderId);
+      let ordersDetails = await connection.promise().query(ordersQuery, [newOrderId]); 
+      let orders = ordersDetails[0];
+      let [totalPrice] = await connection.promise().query(totalValueQuery);
+      let allproducts = await connection.promise().query(allProducts);
+
+
+ // Step 3: Group orders by orderId
+        const groupedOrders = {};
+        orders.forEach(order => {
+            if (!groupedOrders[order.orderId]) {
+                groupedOrders[order.orderId] = {
+                    orderId: order.orderId,
+                    user: `${order.firstName} ${order.lastName}`,
+                    address: `${order.street}, ${order.city}, ${order.state}, ${order.zipCode}, ${order.country}`,
+                    paymentMethod: order.paymentMethod,
+                    orderDate: order.orderDate,
+                    products: [],
+                    totalOrderValue: 0
+                };
+            }
+
+            groupedOrders[order.orderId].products.push({
+                name: order.productName,
+                quantity: order.productQuantity,
+                price: order.price,
+                image: order.productImage,
+            });
+        });
+
+
+        
+    
+    res.render('Seller/seller.ejs', {result: allproducts[0], orders: Object.values(groupedOrders), totalPrice: totalPrice})
     }catch(err){
         res.send(err);
     }
