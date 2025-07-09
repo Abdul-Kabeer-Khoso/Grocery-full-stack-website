@@ -100,12 +100,13 @@ body{
     width: 130px;
     height: auto;
     overflow: hidden;
-    background-color: pink;
+    background-color: rgba(255, 192, 203, 0);
     border-radius: 5px;
     padding: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 0.5px solid #6a7282a2;
 }
 
 .category img{
@@ -171,6 +172,12 @@ p{
     margin-bottom: 8px;
 }
 
+.reviewBox{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
 .price-and-btn{
     width: 100%;
     height: auto;
@@ -186,6 +193,7 @@ p{
     margin: 0px;
 }
 
+
 .bestSellingProductPrice{
     color: #3b996d;
     font-size: 17px;
@@ -199,7 +207,7 @@ p{
     margin-left: 5px;
     margin-top: 0px;
     margin-bottom: 0px;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .AddButton{

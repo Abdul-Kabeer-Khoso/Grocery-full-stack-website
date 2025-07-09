@@ -336,6 +336,35 @@ app.get("/product/:id", isLoggedIn, async (req, res)=>{
     }
 })
 
+//Seller login
+app.get("/seller/login", async (req, res)=>{
+    let user = res.locals.currUser;
+    let productNumberQuery = 'select * from Cart where userId = ?';
+    let totalCartProducts;
+     if(user){
+            let productNumber = await connection.promise().query(productNumberQuery, [user.userId]);
+            totalCartProducts = productNumber[0].length;
+     }
+     else{
+        totalCartProducts = 0;
+     }
+     
+    res.render("./Seller/sellerLogin.ejs", {totalCartProducts});
+})
+
+//Seller authentication
+app.post("/seller/admin/login", (req, res)=>{
+    let {email, password} = req.body;
+    if(email=="admin@gmail.com" && password=="admin"){
+        req.flash("success", "Admin login successfully");
+        res.redirect("/seller");
+    }
+    else{
+        req.flash("error", "Email or Password Incorrect");
+        res.redirect("/seller/login");
+    }
+})
+
 // //Show Seller Products
 app.get("/seller", async (req, res)=>{
     let allProducts = 'select * from Products';

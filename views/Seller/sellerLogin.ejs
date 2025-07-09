@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../public/css/homeStyle.css">
+    <title>Grocify</title>
+    <style>
+
+        .loginOuterBox{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 80px 0px 120px 0px;
+        }
+
+        .loginInnerBox{
+            width: 270px;
+            height: auto;
+            padding: 30px 20px;
+            background-color: white;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border: 0.5px solid rgb(197, 197, 197);
+            box-shadow: 2px 2px 5px rgb(197, 197, 197);
+        }
+
+        .loginForm{
+            width: 100%;
+            height: auto;
+            font-family: "Varela Round", sans-serif;
+            font-size: 12px;
+            color: #364153;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+
+        .loginInnerBox h2{
+            margin: 0px 0px 15px 0px;
+            color:#4fbf8b;
+            font-family: "Varela Round", sans-serif;
+        }
+
+        .loginInnerBox h2 span{
+            color:#364153;
+        }
+
+        .loginForm label{
+            width: 100%;
+        }
+
+        .loginForm input, .newUserFormBtn{
+            width: 92%;
+            padding: 10px;
+            border-radius: 3.5px;
+            border: 0.5px solid rgb(197, 197, 197);
+            font-family: "Varela Round", sans-serif;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .loginForm input{
+            margin-top: 6px;
+            margin-bottom: 12px;
+        }
+
+        .formTextLinks .formRedirection{
+            color:#4fbf8b;
+            transition-property: all;
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in-out;
+        }
+
+        .loginForm p, .formRedirection{
+            text-decoration: none;
+            font-family: "Varela Round", sans-serif;
+            font-size: 13px;
+            color: #364153;
+            margin: 10px 0px 10px 0px;
+        }
+
+        .newUserFormBtn{
+            width: 100%;
+            background-color: #4fbf8b;
+            color: white;
+            border: none;
+            font-size: 14px;
+        }
+
+
+        .loginForm{
+            display: flex;
+        }
+
+        .loginTitle{
+            display: inline;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <%-include("../includes/header.ejs")%>
+
+         <%-include("../includes/flash.ejs")%>
+
+        <div class="loginOuterBox">
+
+           
+            
+
+            <div class="loginInnerBox">
+                <h2>Admin <span class="loginTitle">Login</span></h2>
+                <form class="loginForm" method="POST" action="/seller/admin/login">
+                    <label for="email"> Email <br>
+                    <input type="email" placeholder="type here" id="email" name="email" required>
+                    </label>
+
+                    <label for="password">Password <br>
+                    <input type="password" placeholder="type here" id="password" name="password" required>
+                    </label>
+
+                    <br>
+                    <br>
+
+                    <button class="newUserFormBtn">Login</button>
+                </form>
+            </div>
+        </div>    
+
+    <%-include("../includes/footer.ejs")%>
+
+</body>
+</html>

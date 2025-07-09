@@ -25,6 +25,12 @@
                             <img src="<%=product.productImage1%>">
                             <p class="bestSellingProductType"><%=product.productCategory%></p>
                             <p class="bestSellingProductName"><%=product.productName%></p>
+                            <div class="reviewBox">
+                                <%for(let i=0; i<product.productReviews; i++) {%>
+                                    <span> <i class="fa-solid fa-star fa-sm" style="color: #4fbf8b;"></i> </span>
+                                <%}%>
+                                <span> <i class="fa-regular fa-star fa-sm" style="color: #4fbf8b;"> </i></span>
+                            </div>
                             <div class="price-and-btn">
 
                                 <div class="price">
