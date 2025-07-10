@@ -13,3 +13,11 @@ module.exports.saveRedirectUrl = (req, res, next)=>{
     }
     next();
 }
+
+module.exports.isAdmin = (req, res, next) => {
+    if (!req.session.isAdmin) {
+        req.flash("error", "Unauthorized access");
+        return res.redirect("/seller/login");
+    }
+    next();
+};

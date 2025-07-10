@@ -48,12 +48,12 @@
             font-size: 14px;
         }
 
-        .navLinks, .navSearch{
+        .navLinks, .navSearch, .productSearch{
             display: flex;
             align-items: center;
         }
 
-        .navSearch input{
+        .navSearch input, .productSearch input{
             width: 180px;
             padding: 5px 28px 5px 10px;
             border-radius: 15px;
@@ -61,11 +61,11 @@
             font-family: "Varela Round", sans-serif;
         }
 
-        .navSearch{
+        .navSearch, .productSearch{
             position: relative;
         }
 
-        .navSearch i{
+        .navSearch i, .productSearch i{
             color: rgb(175, 175, 175);
             position: absolute;
             right: 8px;
@@ -149,6 +149,9 @@
 
         }
 
+        .productSearch, .menuIcon{
+            display: none;
+        }
 
 
 
@@ -160,6 +163,11 @@
         }     
         
         .navSearch i:hover{
+            cursor: pointer;
+            color: rgb(71, 71, 71);
+        }
+
+        .productSearch i:hover{
             cursor: pointer;
             color: rgb(71, 71, 71);
         }
@@ -185,12 +193,105 @@
             cursor: pointer;
         }
 
+        /* Media Queries */
+        @media (min-width: 970px) and (max-width: 1100px){
+            .navbarHeader{
+                padding: 1vw 5vw;
+            }
+
+            .navLinks-searchBar{
+                width: 75%;
+            }
+        }
+
+        @media (min-width: 870px) and (max-width: 970px){
+            .navbarHeader{
+                padding: 1vw 3.5vw;
+            }
+            .navLinks-searchBar{
+                width: 80%;
+            }
+        }
+
+        @media (min-width: 830px) and (max-width: 870px){
+            .navbarHeader{
+                padding: 1vw 3vw;
+            }
+            .navLinks-searchBar{
+                width: 85%;
+            }
+        }
+
+        @media (min-width: 500px) and (max-width: 830px){
+            .navbarHeader{
+                padding: 1vw 2.5vw;
+                justify-content: space-between;
+            }
+            .navLinks-searchBar{
+                width: auto;
+            }
+            .loginBtn, .navLinks, .navCart, .navSearch{
+                display: none;
+            }
+
+            .menuIcon{
+                display: inline-block;
+            }
+
+            .productSearch{
+                width: 60%;
+                display: flex;
+            }
+
+            .productSearch input{
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 500px){
+            .navbarHeader{
+                padding: 0.7vw 2vw;
+                justify-content: space-between;
+            }
+            .navLinks-searchBar{
+                width: auto;
+            }
+            .loginBtn, .navLinks, .navCart, .navSearch{
+                display: none;
+            }
+
+            .menuIcon{
+                display: inline-block;
+                font-size: 6.5vw;
+            }
+
+            .productSearch{
+                width: 60%;
+                display:none;
+            }
+
+            .navLogo .logoNameFirstLetter{
+                font-size: 6vw;
+            }
+
+            .navLogo .logoName{
+                font-size: 5vw;
+            }
+
+  
+        }
+
     </style>
 <body>
     <header class="navbarHeader">
         <div class="navLogo">
         <p class="logoName"><span class="logoNameFirstLetter">G</span>rocify</p>
         </div>
+
+        <div class="productSearch">
+                <input type="text" class="searchProducts" placeholder="Search products">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
 
         <div class="navLinks-searchBar">
             <div class="navLinks">
@@ -199,10 +300,11 @@
                 <a href="/product/all" class="headerLinks">All Products</a>
             </div>
             <div class="navSearch">
-                <input type="text" placeholder="Search products">
+                <input type="text" class="searchProducts" placeholder="Search products">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             
+            <i class="fa-solid fa-bars fa-xl menuIcon"></i>
             
             <a href="/product/cart" class="navCart">
                 <i class="fa-solid fa-cart-shopping"></i>
