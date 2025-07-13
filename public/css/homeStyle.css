@@ -1270,3 +1270,102 @@ button:hover{
         width: 35vw;
     }
 }
+
+/* Product Details media Queries */
+@media (min-width: 830px) and (max-width: 1100px){
+    .details, .pathText{
+        width: 93%;
+    }
+    .detailsText h2{
+        font-size: 3vw;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 830px){
+    .details, .pathText{
+        width: 95%;
+    }
+    .relatedProductText{
+        font-size: 3vw;
+    }
+    .relatedProductsBox{
+        grid-template-columns: repeat(auto-fill, minmax(19vw, 1fr));
+        gap: 2vw;
+    }
+    .detailProduct{
+        width: 19vw;
+    }
+    .showProductImage{
+        width: 43%;
+    }
+    .productMultipleImages{
+        display: none;
+    }
+    .detailsText{
+        width: 56%;
+    }
+    .detailsText h2{
+        font-size: 3.3vw;
+    }
+    .mrpNewPrice{
+        font-size: 2.5vw;
+    }
+    .mrpOldPrice{
+        font-size: 2vw;
+    }
+}
+
+@media (max-width: 500px){
+    .details, .pathText{
+        width: 95%;
+    }
+    .details{
+        flex-direction: column;
+    }
+    .relatedProductText{
+        font-size: 5vw;
+        font-weight: normal;
+    }
+    .relatedProductsBox{
+        grid-template-columns: repeat(auto-fill, minmax(25vw, 1fr));
+        gap: 2vw;
+    }
+    .detailProduct{
+        width: 25vw;
+    }
+    .showProductImage{
+        width: 60%;
+        margin: 1.5vw 0 0 0;
+    }
+    .productMultipleImages{
+        display: inline;
+        width: 15%;
+    }
+    .detailsText{
+        width: 90%;
+        margin-left: 0;
+    }
+    .detailsText h2{
+        font-size: 5vw;
+    }
+    .detailReviews .fa-star{
+        font-size: 4vw;
+    }
+    .mrpNewPrice,.aboutProductHeading{
+        font-size: 4.5vw;
+    }
+    .mrpOldPrice, .taxText, .productDescriptionText{
+        font-size: 3.8vw;
+    }
+    .productDescriptionText{
+        width: 55%;
+        margin: 2.5vw 0 4vw 0vw;
+    }
+    .detailBtnForm button{
+        width: 75%;
+        font-weight: normal;
+    }
+    .buyNowBtn, .addToCartBtn{
+        font-size: 3vw;
+    }
+}

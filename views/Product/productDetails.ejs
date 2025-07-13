@@ -31,7 +31,7 @@
 
             <div class="detailsText">
                 <h2><%=product.productName%></h2>
-                <div class="reviews">
+                <div class="reviews detailReviews">
                     <%for(let i=0; i< product.productReviews; i++) {%>
                         <i class="fa-solid fa-star"></i>
                      <% } %>   
@@ -63,7 +63,7 @@
         <div class="showProductsBox relatedProductsBox">
                 <% for(let product of relatedProducts) { %>
                 <a href='/product/<%= product.productId %>'>
-                <div class="bestSellingProduct">
+                <div class="bestSellingProduct detailProduct">
                             <img src="<%=product.productImage1%>">
                             <p class="bestSellingProductType"><%=product.productCategory%></p>
                             <p class="bestSellingProductName"><%=product.productName%></p>
