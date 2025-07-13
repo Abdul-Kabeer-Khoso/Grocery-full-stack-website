@@ -93,11 +93,11 @@ body{
 .categories{
     display: grid;
     gap: 1.5vw;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(11vw, 1fr));
 }
 
 .category{
-    width: 130px;
+    width: 10vw;
     height: auto;
     overflow: hidden;
     background-color: rgba(255, 192, 203, 0);
@@ -920,4 +920,314 @@ button:hover{
 
 .newAddressForm input:focus{
     border-color: #4fbf8b;
+}
+
+/* Media Queries */
+@media (min-width: 830px)and (max-width: 1100px){
+    .imageBox,.categoryBox, .bestSellers, .marketingImageSection, .emailSubscription{
+        width: 93%;
+    }
+    .imageBox{
+        height: auto;
+        aspect-ratio: 1/0.4;
+    }
+    .imageBoxText-and-Btn h1{
+        font-size: 4vw;
+        margin: 1vw 0vw 2.5vw 0vw;
+    }
+    .shopNowBtn{
+        width: 11vw;
+        height: 4vw;
+        font-size: 1.5vw;
+    }
+    .exploreBtn{
+        width: 13vw;
+        height: 4vw;
+        font-size: 1.5vw;
+    }
+    .categoryBox h2{
+        font-size: 3vw;
+    }
+    .bestSellingProduct{
+        width: 16vw;
+        height: auto;
+        aspect-ratio: 1/1.4;
+    }
+    .bestSellingProductType{
+        font-size: 1.5vw;
+    }
+    .bestSellingProductName{
+        font-size: 1.8vw;
+        margin: 1vw 0vw;
+    }
+    .marketingDetailsBox h1{
+        font-size: 3vw;
+    }
+    .marketingDetail{
+        height: auto;
+        aspect-ratio: 1/0.1;
+    }
+    .detailTextHeading{
+        font-size: 1.6vw;
+    }
+    .detailTextDescription{
+        font-size: 1.3vw;
+    }
+    .emailSubscription h1{
+        font-size: 3.2vw;
+    }
+    .emailSubscription p{
+        font-size: 1.8vw;
+    }
+    .emailInput-and-btn{
+        margin-top: 3vw;
+    }
+    .emailInput-and-btn button{
+        font-size: 1.8vw;
+    }
+}
+
+@media (min-width: 500px)and (max-width: 830px){
+    .imageBox,.categoryBox, .bestSellers, .marketingImageSection, .emailSubscription{
+        width: 96%;
+    }
+    .imageBox{
+        height: auto;
+        aspect-ratio: 1/0.4;
+    }
+    .imageBoxText-and-Btn h1{
+        font-size: 4vw;
+        margin: 2.3vw 0vw 3.4vw 0vw;
+    }
+    .shopNowBtn{
+        width: 12vw;
+        height: 4vw;
+        font-size: 1.6vw;
+    }
+    .exploreBtn{
+        width: 14vw;
+        height: 4vw;
+        font-size: 1.6vw;
+    }
+    .categoryBox h2{
+        font-size: 3.5vw;
+    }
+    .bestSellingProductsBox{
+        grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+    }
+    .bestSellingProduct{
+        width: 21vw;
+        height: auto;
+        padding: 1vw;
+    }
+    .bestSellingProductType{
+        font-size: 2vw;
+    }
+    .fa-star{
+        font-size: 2vw;
+    }
+    .bestSellingProductName{
+        font-size: 2.2vw;
+        margin: 0.7vw 0vw;
+    }
+     .bestSellingProductPrice{
+        font-size: 2.3vw;
+    }
+    .bestSellingProductOldPrice{
+        font-size: 1.9vw;
+    }
+    .categories{
+        grid-template-columns: repeat(auto-fill, minmax(19vw, 1fr));
+    }
+    .category{
+        width: 17vw;
+        height: auto;
+        aspect-ratio: 1/1.1;
+    }
+    .category img{
+        width: 85%
+    }
+    .category p{
+        font-size: 2vw;
+    }
+    .AddButton{
+        width: 8vw;
+        height: auto;
+        aspect-ratio: 1/0.5;
+        font-size: 2vw;
+    }
+    .marketingDetailsBox h1{
+        font-size: 3vw;
+    }
+    .marketingDetail{
+        height: auto;
+        aspect-ratio: 1/0.1;
+    }
+    .detailIcon{
+        width: 4.5vw;
+    }
+    .detailIcon i{
+        font-size: 3vw;
+    }
+    .detailTextHeading{
+        font-size: 1.6vw;
+    }
+    .detailTextDescription{
+        font-size: 1.3vw;
+    }
+    .emailSubscription h1{
+        font-size: 3.2vw;
+    }
+    .emailSubscription p{
+        font-size: 1.8vw;
+    }
+    .emailInput-and-btn{
+        margin-top: 2vw;
+    }
+    .emailInput-and-btn input{
+        height: auto;
+        aspect-ratio: 1/0.12;
+    }
+    .emailInput-and-btn button{
+        height: auto;
+        aspect-ratio: 1/0.38;
+        font-size: 1.8vw;
+    }
+}
+
+@media (max-width: 500px){
+    .imageBox,.categoryBox, .bestSellers, .marketingImageSection, .emailSubscription{
+        width: 96%;
+    }
+    .imageBox{
+        height: auto;
+        aspect-ratio: 1/0.6;
+        border-radius: 5px;
+    }
+    .imageBoxText-and-Btn{
+        width: 40%;
+        left: 6vw;
+        top: 21vw;
+    }
+    .imageBoxText-and-Btn h1{
+        font-size: 5vw;
+        margin: 2.3vw 0vw 3.4vw 0vw;
+    }
+    .imageBoxButton{
+        flex-direction: column;
+    }
+    .shopNowBtn{
+        width: 16vw;
+        height: 5vw;
+        font-size: 2.6vw;
+        border-radius: 2px;
+    }
+    .exploreBtn{
+        width: 20vw;
+        height: 5vw;
+        font-size: 2vw;
+        margin: 2vw 0vw 0vw 0vw;
+    }
+    .categoryBox h2{
+        font-size: 3.5vw;
+    }
+    .bestSellers h2{
+        font-size: 3.5vw;
+    }
+    .bestSellingProductsBox{
+        grid-template-columns: repeat(auto-fill, minmax(24vw, 1fr));
+    }
+    .bestSellingProduct{
+        width: 27vw;
+        height: auto;
+        padding: 1vw;
+    }
+    .bestSellingProductType{
+        font-size: 2.5vw;
+    }
+    .fa-star{
+        font-size: 2.3vw;
+    }
+    .bestSellingProductName{
+        font-size: 2.8vw;
+        margin: 0.7vw 0vw;
+    }
+    .bestSellingProductPrice{
+        font-size: 2.7vw;
+    }
+    .bestSellingProductOldPrice{
+        font-size: 2.3vw;
+        margin-left: 2px;
+    }
+    .categories{
+        grid-template-columns: repeat(auto-fill, minmax(22vw, 1fr));
+    }
+    .category{
+        width: 19vw;
+        height: auto;
+        aspect-ratio: 1/1.2;
+    }
+    .category img{
+        width: 85%
+    }
+    .category p{
+        font-size: 3vw;
+    }
+    .AddButton{
+        width: 10vw;
+        height: auto;
+        aspect-ratio: 1/0.5;
+        font-size: 2.5vw;
+        border-radius: 2px;
+        justify-content: space-between;
+    }
+    .marketingImageSection{
+        height: auto;
+        aspect-ratio: 1/0.4;
+    }
+    .marketingImageBox{
+        height: 100%;
+    }
+    .marketingDetailsBox h1{
+        font-size: 3.5vw;
+    }
+    .marketingDetail{
+        height: auto;
+        aspect-ratio: 1/0.1;
+        margin-bottom: 3px;
+    }
+    .detailIcon{
+        width: 4.5vw;
+    }
+    .detailIcon i{
+        font-size: 3vw;
+    }
+    .detailTextHeading{
+        font-size: 2.2vw;
+        font-weight: 550;
+    }
+    .detailTextDescription{
+        font-size: 1.9vw;
+    }
+    .emailSubscription h1{
+        font-size: 3.6vw;
+    }
+    .emailSubscription p{
+        font-size: 2.4vw;
+    }
+    .emailInput-and-btn{
+        margin-top: 2vw;
+    }
+    .emailInput-and-btn input{
+        height: auto;
+        aspect-ratio: 1/0.125;
+        border-radius: 2px;
+        font-size: 2.6vw;
+    }
+    .emailInput-and-btn button{
+        height: auto;
+        aspect-ratio: 1/0.38;
+        font-size: 2.6vw;
+        border-radius: 2px;
+    }
 }

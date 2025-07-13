@@ -153,6 +153,35 @@
             display: none;
         }
 
+        .menuBox{
+            width: auto;
+            background-color: rgb(218, 216, 216);
+            display: none;
+            flex-direction: column;
+            padding: 1vw 1vw 0vw 0vw;
+            border: 0.5px solid #6a7282a2;
+            border-radius: 5px;
+            position: absolute;
+            z-index: 5;
+            top: 6vw;
+            right: 2vw;
+        }
+
+        /* .menuBox a{
+            padding: 0.2vw 1vw;
+        } */
+
+        .menuBoxLink{
+            border: none;
+            padding: 0;
+            transition: none;
+            margin-bottom: 5px;
+            text-decoration: none;
+            margin-left: 17px;
+            color: rgb(46, 46, 46);
+            font-size: 14px;
+        }
+
 
 
         /* Hover effects */
@@ -189,14 +218,18 @@
             cursor: pointer;
             font-size: 14px;
         }
-        .navLoginDetails:hover{
+        .navLoginDetails:hover, .menuIcon:hover{
             cursor: pointer;
+        }
+        .menuBoxLink:hover{
+            background-color: #4fbf8b;
+            color: white;
         }
 
         /* Media Queries */
         @media (min-width: 970px) and (max-width: 1100px){
             .navbarHeader{
-                padding: 1vw 5vw;
+                padding: 1vw 4vw;
             }
 
             .navLinks-searchBar{
@@ -248,6 +281,7 @@
             }
         }
 
+
         @media (max-width: 500px){
             .navbarHeader{
                 padding: 0.7vw 2vw;
@@ -261,7 +295,7 @@
             }
 
             .menuIcon{
-                display: inline-block;
+                display: block;
                 font-size: 6.5vw;
             }
 
@@ -277,8 +311,31 @@
             .navLogo .logoName{
                 font-size: 5vw;
             }
+        }
 
-  
+        @media (min-width: 831px){
+         .menuBox, .menuIcon{
+                display: none !important;
+            }
+        }
+        
+
+        @media (min-width: 500px) and (max-width: 730px){
+            .menuBox{
+                top: 8vw;
+            }
+        }
+
+        @media (min-width: 350px) and (max-width: 500px){
+            .menuBox{
+                top: 11vw;
+            }
+        }
+
+        @media (max-width: 350px){
+            .menuBox{
+                top: 13vw;
+            }
         }
 
     </style>
@@ -305,6 +362,15 @@
             </div>
             
             <i class="fa-solid fa-bars fa-xl menuIcon"></i>
+
+            <div class="menuBox">
+                <a href="/seller/login"  class="menuBoxLink">Seller Dashboard</a>
+                <a href="/product" class="menuBoxLink">Home</a>
+                <a href="/product/all" class="menuBoxLink">All Products</a>
+                <a href="/orders" class="menuBoxLink">My Orders</a>
+                <a href="/logout" class="menuBoxLink">Logout</a>
+            </div>
+
             
             <a href="/product/cart" class="navCart">
                 <i class="fa-solid fa-cart-shopping"></i>
@@ -348,7 +414,16 @@
         })
         }
     
-        
+        let menuIcon = document.getElementsByClassName('menuIcon')[0];
+        let menuBox = document.getElementsByClassName("menuBox")[0];
+        menuIcon.addEventListener('click', ()=>{
+           if(menuBox.style.display!='flex') {
+                menuBox.style.display="flex";
+           } else{
+                menuBox.style.display="none";
+           }
+
+        })
 
 
     </script>    
