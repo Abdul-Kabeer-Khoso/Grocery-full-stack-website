@@ -549,6 +549,7 @@ p{
     margin: 0 0 4vw 0;
 }
 
+
 /* Cart Section */
 .cartMainSection{
     width: 82%;
@@ -1229,5 +1230,43 @@ button:hover{
         aspect-ratio: 1/0.38;
         font-size: 2.6vw;
         border-radius: 2px;
+    }
+}
+
+/* All product Section media queries */
+@media (min-width: 830px) and (max-width: 1100px){
+    .allProductMainSection .sectionTitle, .showProductsBox{
+        width: 93%;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 830px){
+    .allProductMainSection .sectionTitle, .showProductsBox{
+        width: 95%;
+    }
+    .allProductMainSection .sectionTitle{
+        font-size: 3vw;
+        margin-top :3vw;
+    }
+    .showProductsBox{
+        grid-template-columns: repeat(auto-fill, minmax(25vw, 1fr));
+        gap: 5vw;
+    }
+}
+
+@media (max-width: 500px){
+    .allProductMainSection .sectionTitle, .showProductsBox{
+        width: 95%;
+    }
+    .allProductMainSection .sectionTitle{
+        font-size: 3.5vw;
+        margin-top: 2vw;
+    }
+    .showProductsBox{
+        grid-template-columns: repeat(auto-fill, minmax(35vw, 1fr));
+        gap: 4vw;
+    }
+    .allProduct{
+        width: 35vw;
     }
 }
