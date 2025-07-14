@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grocify</title>
     <style>
+        .flashOuterBox{
+            width: 100%;
+            min-height: 56px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 45px;
+            z-index: 4;
+        }
         .flashBox{
             width: 300px;
             height: auto;
@@ -15,12 +25,6 @@
             border-radius: 6px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            position: absolute;
-            top: 60px;
-            left: 37%;
-            z-index: 4;
         }
         .flashBox p{
             margin: 0 35px 0 0;
@@ -28,19 +32,44 @@
         .flashBox i:hover{
             cursor: pointer;
         }
+
+        @media (min-width: 1100px){
+            .flashOuterBox{
+                top: 58px;
+            }
+        }
+
+        @media (max-width: 450px){
+            .flashOuterBox{
+                min-height: 11vw;
+            }
+            .flashBox{
+                width: 70vw;
+                border-radius: 5px;
+            }
+            .flashBox p, .flashBox i{
+                font-size: 3.5vw;
+            }
+        }
+
+        
     </style>
 </head>
 <body>
-
+    
     <%if(success && success.length>0) {%>
+    <div class="flashOuterBox">
     <div class="flashBox" style="background-color: #7ee9b7">
         <p><%=success%></p>
         <i class="fa-solid fa-xmark"></i>
     </div>
+    </div>
     <%} else if(error && error.length>0) {%>
+    <div class="flashOuterBox">
     <div class="flashBox">
         <p><%=error%></p>
         <i class="fa-solid fa-xmark"></i>
+    </div>
     </div>
     <%}%>
 

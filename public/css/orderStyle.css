@@ -126,3 +126,69 @@ tbody tr{
     object-fit: cover;
     margin-top: 20px;
 }
+
+
+/* Order section media queries */
+@media (min-width: 830px) and (max-width: 1100px){
+    .orderTitle, .tableBox{
+        width: 93%;
+    }
+    .orderTable{
+        width: 100%;
+    }
+    
+}
+
+@media (min-width: 500px) and (max-width: 830px){
+    .orderTitle, .tableBox{
+        width: 95%;
+    }
+    .orderTitle{
+        font-size: 3.8vw;
+        margin: 2vw 0vw;
+    }
+    .orderTable{
+        width: 100%;
+    }
+    tbody tr{
+        height: 13vw;
+    }
+    .orderIdCol, .paymentCol, .amountCol{
+        font-size: 1.8vw;
+    }
+    .orderItemTitle, .orderExtraDetailsBox p, .orderItemPrice{
+        font-size: 2vw;
+    }
+    .orderItemCategory{
+        font-size: 1.7vw;
+    }
+}
+
+@media (max-width: 500px){
+    .orderTitle, .tableBox{
+        width: 95%;
+    }
+    .orderTitle{
+        font-size: 3.8vw;
+        margin: 2vw 0vw;
+    }
+    .orderTable{
+        width: 100%;
+    }
+    thead{
+        height: 30px;
+    }
+    tbody tr{
+        height: 13vw;
+    }
+    .orderIdCol, .paymentCol, .amountCol{
+        font-size: 2.2vw;
+    }
+    .orderItemTitle, .orderExtraDetailsBox p, .orderItemPrice{
+        font-size: 2.5vw;
+    }
+    .orderItemCategory{
+        font-size: 2.2vw;
+    }
+
+}

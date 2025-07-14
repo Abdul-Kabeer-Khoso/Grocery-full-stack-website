@@ -39,7 +39,7 @@
         <div class="rightBox">
             <div class="opt1Box optBox">
                 <form method="POST" action="/seller/add">
-                <p>Product Image</p>
+                <p  class="addProductFormLabelText">Product Image</p>
                 
                 <div class="imageInputs">
 
@@ -54,19 +54,19 @@
 
                 <br>
 
-                <p>Product Name</p>
+                <p class="addProductFormLabelText">Product Name</p>
 
                 <input type="text" placeholder="Type here" class="productInputs" required name="product[productName]">
 
                 <br>
 
-                <p>Product Description</p>
+                <p class="addProductFormLabelText">Product Description</p>
 
                 <textarea placeholder="Type here" class="productInputs productDescrptionInput" required name="product[productDescription]"></textarea>
 
                 <br>
 
-                <p>Category</p>
+                <p class="addProductFormLabelText">Category</p>
 
                 <select class="productInputs productCategoryInput" required name="product[productCategory]">
                     <option>Vegetables</option>
@@ -81,12 +81,12 @@
                 <div class="productPrices">
 
                     <div class="newPrice">
-                    <p>New Price</p>
+                    <p class="addProductFormLabelText">New Price</p>
                     <input type="number" placeholder="0" required name="product[productNewPrice]">
                     </div>
 
                     <div class="oldPrice">
-                    <p>Old Price</p>
+                    <p class="addProductFormLabelText">Old Price</p>
                     <input type="number" placeholder="0" required name="product[productOldPrice]">
                     </div>
 
@@ -101,7 +101,7 @@
                 <h2 class="allProductText">All Product</h2>
                 <br>
                 <div class="allProducts">
-                    <table>
+                    <table class="allProductTable">
 
                         <thead>
                             <th>Product</th>
@@ -191,7 +191,7 @@
                     myStyleOpt.style.border="none";
                 })
                 option.style.backgroundColor="#4fbf8b27";
-                option.style.borderRight="6px solid #4fbf8b";
+                option.style.borderRight="3px solid #4fbf8b";
                 if(option.classList.value=='opt1 opt'){
                     Array.from(optionsBox).forEach((optBox)=>{
                         if(optBox.classList.value=='opt1Box optBox'){

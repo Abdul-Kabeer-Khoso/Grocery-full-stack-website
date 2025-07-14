@@ -304,6 +304,13 @@
                 font-size: 6.5vw;
             }
 
+              .navLoginDetails{
+                display: none;
+            }
+            .menuBoxLink{
+                font-size: 11px;
+            }
+
             .productSearch{
                 width: 60%;
                 display:none;
@@ -372,8 +379,13 @@
                 <a href="/seller/login"  class="menuBoxLink">Seller Dashboard</a>
                 <a href="/product" class="menuBoxLink">Home</a>
                 <a href="/product/all" class="menuBoxLink">All Products</a>
+                <a href="/product/cart" class="menuBoxLink">Cart</a>
+                 <% if(currUser) {%>
                 <a href="/orders" class="menuBoxLink">My Orders</a>
                 <a href="/logout" class="menuBoxLink">Logout</a>
+                <% } else{%>
+                <a href="/user/login" class="menuBoxLink">Login</a>
+                <%}%>
             </div>
 
             

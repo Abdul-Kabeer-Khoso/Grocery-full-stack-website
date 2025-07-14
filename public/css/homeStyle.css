@@ -1271,7 +1271,7 @@ button:hover{
     }
 }
 
-/* Product Details media Queries */
+/* Product Details section media queries */
 @media (min-width: 830px) and (max-width: 1100px){
     .details, .pathText{
         width: 93%;
@@ -1369,3 +1369,167 @@ button:hover{
         font-size: 3vw;
     }
 }
+
+/* Cart media section 1ueries */
+@media (min-width: 830px) and (max-width: 1100px){
+    .cartMainSection{
+        width: 93%;
+    }
+}
+
+
+@media (min-width: 500px) and (max-width: 830px){
+    .cartMainSection{
+        width: 95%;
+    }
+    .cartMainSection{
+        flex-direction: column;
+    }
+    .shoppingProductDetails{
+        height: auto;
+    }
+    .shoppingCartText h2{
+        font-size: 3vw;
+    }
+    .cartTableHeading{
+        font-size: 2.8vw;
+    }
+    .cartProductDetailsImage{
+        width: 11.5vw;
+    }
+    .cartSectionBox1{
+        width: 90%;
+    }
+    .cartSectionBox2{
+        width: 75%;
+        margin-top: 4vw;
+        align-self: center;
+    }
+    .cartSectionBox2 h2{
+        font-size: 3vw;
+    }
+}
+
+
+@media (max-width: 500px){
+    .cartMainSection{
+        width: 95%;
+    }
+    .cartMainSection{
+        flex-direction: column;
+    }
+    .shoppingCartText{
+        margin-bottom: 2vw;
+    }
+    .shoppingCartText h2{
+        font-size: 4vw;
+    }
+    .shoppingCartText .itemsNumberInCart{
+        font-size: 2.7vw;
+    }
+    .cartTableHeading{
+        font-size: 3.8vw;
+        font-weight: normal;
+        text-decoration: underline;
+    }
+    .shoppingProductDetails{
+        height: auto;
+    }
+    .cartProductDetailsImage{
+        width: 14vw;
+    }
+    .cartProductName{
+        font-size: 3.5vw;
+    }
+    .cartProductWeight, .cartProductQty, .updateQty{
+        font-size: 3vw;
+    }
+    .cartTableProductPrice{
+        font-size: 3.3vw;
+    }
+    .cartCircleMark button i{
+        font-size: 3.5vw;
+    }
+    .cartSectionBox1{
+        width: 95%;
+        margin-top: 5vw;
+    }
+    .continueShopping{
+        font-size: 3.2vw;
+    }
+    .cartSectionBox2{
+        width: 94%;
+        margin-top: 6vw;
+        align-self: center;
+    }
+    .cartSectionBox2 h2{
+        font-size: 4vw;
+    }
+    .cartSectionBox2Titles, .shippingAddress, .paymentMethod, .cartDetailsAmountBox{
+        font-size: 3vw;
+    }
+    .changeAddressBtn{
+        font-size: 3.3vw;
+    }
+    .paymentBtns{
+        font-size: 3.5vw;
+    }
+}
+
+/* Address section media 1ueries */
+@media (min-width: 830px) and (max-width: 1100px){
+    .newShippingAddressBox{
+        width: 93%;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 830px){
+    .newShippingAddressBox{
+        width: 95%;
+    }
+    .newAddressFormBox{
+        width: 78%;
+    }
+    .newAddressBoxImage{
+        width: 20%;
+        background-color: teal;
+    }
+    .newAddressHeading{
+        font-size: 4vw;
+        margin: 4vw 0vw;
+    }
+}
+
+@media (max-width: 500px){
+    .newShippingAddressBox{
+        width: 95%;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+    }
+    .newAddressFormBox{
+        width: 90%;
+    }
+    .formInnerBox{
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+    .formInnerBox input{
+        width: 95%;
+    }
+    .newAddressForm input{
+        margin-bottom: 3vw;
+    }
+    .newAddressBoxImage{
+        display: none;
+    }
+    .newAddressHeading{
+        font-size: 6vw;
+        margin: 4vw 0vw;
+    }
+    .saveAddressBtn{
+        font-size: 4vw;
+        margin: 2vw 0vw;
+    }
+}
+

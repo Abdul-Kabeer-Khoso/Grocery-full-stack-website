@@ -1,6 +1,6 @@
 .mainBox{
     display: flex;
-    width: 100vw;
+    width: 95vw;
     height: 100vh;
     font-family: "Varela Round", sans-serif;
 }
@@ -338,4 +338,231 @@ label:hover{
 
 .inStockBtn:hover{
     cursor: pointer;
+}
+
+/* Media Queries */
+@media (min-width: 830px) and (max-width: 1100px){
+    .leftBox{
+        width: 28%;
+    }
+    .allProductText{
+        margin: 0;
+    }
+    .allProductTable{
+        width: 91%;
+    }
+    .orderBox{
+        width: 89%;
+    }
+    .orderBox .order{
+        border-radius: 5px;
+        margin: 2vw 0vw;
+    }
+    .order .orderIconImage{
+        width: 10%;
+    }
+    .order .orderProducts{
+        width: 30%;
+    }
+    .order .orderAddress{
+        width: 30%;
+    }
+    .order .totalOrderPrice{
+        width: 9%;
+    }
+    .order .orderDetails{
+        width: 20%;
+    }
+    .totalOrderPrice p{
+        font-size: 1.7vw;
+    }
+    .orderProducts p{
+        font-size: 1.5vw;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 830px){
+    .mainBox{
+        flex-direction: column;
+    }
+     .leftBox{
+        width: 98%;
+        height: auto;
+        display: flex;
+        border: 0;
+        border-bottom: 0.5px solid grey;
+    }
+    .opt1, .opt2, .opt3{
+        width: 33%;
+    }
+    .rightBox{
+        width: 98%;
+    }
+    .opt1Box form input, .opt1Box form textarea, .opt1Box form select,.opt1Box form .productAddBtn{
+        width: 80%;
+        height: auto;
+        aspect-ratio: 1/0.05;
+        font-size: 2.5vw;
+    }
+    .opt1Box form .productPrices{
+        flex-direction: column;
+    }
+    .allProductText{
+        margin: 0;
+        font-size: 3vw;
+    }
+    .allProductTable{
+        width: 91%;
+    }
+    .product .productImage{
+        width: 40px;
+        height: 40px;
+    }
+    .orderBox{
+        width: 91%;
+    }
+    .orderBox .order{
+        border-radius: 5px;
+        margin: 2vw 0vw;
+    }
+    .orderHeading{
+        font-size: 3vw;
+    }
+    .order .orderIconImage{
+        width: 10%;
+    }
+    .order .orderIconImage img{
+        width: 90%;
+    }
+    .order .orderProducts{
+        width: 30%;
+    }
+    .order .orderAddress{
+        width: 30%;
+    }
+    .order .totalOrderPrice{
+        width: 9%;
+    }
+    .order .orderDetails{
+        width: 20%;
+    }
+    .totalOrderPrice p{
+        font-size: 2.7vw;
+    }
+    .orderProducts p{
+        font-size: 2.5vw;
+    }
+    .order .orderAddress p{
+        font-size: 2.3vw;
+    }
+    .order .orderDetails p{
+        font-size: 2.3vw;
+    }
+    .addProductFormLabelText{
+        width: 50%;
+    }
+    
+
+}
+
+@media (max-width: 500px){
+     .mainBox{
+        flex-direction: column;
+    }
+     .leftBox{
+        width: 98%;
+        height: 40px;
+        display: flex;
+        border: 0;
+        border-bottom: 0.5px solid grey;
+    }
+    .opt1, .opt2, .opt3{
+        width: 33%;
+    }
+    .opt1 i, .opt2 i, .opt3 i{
+        font-size: 3vw;
+    }
+    .opt1 p, .opt2 p, .opt3 p{
+        font-size: 3vw
+    }
+
+    .rightBox{
+        width: 98%;
+    }
+    .opt1Box form input, .opt1Box form textarea, .opt1Box form select{
+        width: 80%;
+        height: auto;
+        aspect-ratio: 1/0.08;
+        font-size: 3.5vw;
+    }
+    .opt1Box form .productPrices{
+        flex-direction: column;
+        width: 50%;
+    }
+    .productPrices .newPrice, .productPrices .oldPrice{
+        width: 80%;
+    }
+    .allProductText{
+        margin: 4vw 0 0 0;
+        font-size: 3.5vw;
+    }
+    .allProductTable{
+        width: 91%;
+    }
+    .product .productImage{
+        width: 40px;
+        height: 40px;
+    }
+    .orderBox{
+        width: 91%;
+    }
+    .orderBox .order{
+        width: 91%;
+        border-radius: 5px;
+        margin: 2vw 0vw;
+    }
+    .orderHeading{
+        font-size: 3.5vw;
+        margin: 3vw 0 0 0;
+    }
+    .order .orderIconImage{
+        width: 10%;
+    }
+    .order .orderIconImage img{
+        width: 90%;
+    }
+    .order .orderProducts{
+        width: 40%;
+    }
+    .order .orderAddress{
+        display: none;
+    }
+    .order .totalOrderPrice{
+        width: 19%;
+    }
+    .order .orderDetails{
+        width: 30%;
+    }
+    .totalOrderPrice p{
+        font-size: 2.7vw;
+    }
+    .orderProducts p{
+        font-size: 2.7vw;
+    }
+    .order .orderDetails p{
+        font-size: 2.5vw;
+    }
+    .addProductFormLabelText{
+        width: 50%;
+    }
+
+    .opt1Box form .productAddBtn{
+        width: 80%;
+        height: auto;
+        aspect-ratio: 1/0.1;
+        font-size: 4.5vw;
+    }
+    thead tr th{
+        font-size: 3vw;
+    }
 }
