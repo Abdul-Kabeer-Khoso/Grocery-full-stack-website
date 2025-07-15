@@ -15,6 +15,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use('/public', express.static(path.join(__dirname, "public")));
+
 app.use(express.static('public'));
 
 
@@ -113,7 +114,7 @@ app.get("/product", (req, res)=>{
         }
          
     } catch(err){
-        res.send("There is something error in home page")
+        throw new ExpressError(500, err);
     }
 });
 
@@ -174,7 +175,7 @@ app.get("/orders", isLoggedIn, async (req, res)=>{
 
             res.render("Product/order.ejs", {totalCartProducts: totalCartProducts, orders: orders, orderId: newOrderIds, products: allOrderProducts, orderTotalPrice: ordersTotalPrice});   
     } catch(err){
-        res.send(err);
+    throw new ExpressError(500, err);
     }
 })
 
@@ -204,7 +205,7 @@ app.post("/placeOrder", isLoggedIn, async (req, res)=>{
         res.redirect('/orders');
 
     } catch(err){
-        res.send(err);
+        throw new ExpressError(500, err);
     }
 })
 
@@ -227,7 +228,7 @@ app.get("/product/all", async (req, res)=>{
         
         
         }catch(err){
-        res.send("There is something error in showing all products");
+        throw new ExpressError(500, err);
     }
 })
 
@@ -253,7 +254,7 @@ app.get("/product/cart", isLoggedIn, async (req, res)=>{
             const totalPrice = tax + price;
             res.render('Product/cart.ejs', {products: products, price: price, tax: tax.toFixed(1), totalPrice: totalPrice.toFixed(1), totalCartProducts: productLength, userAddress: address[0]});
         } catch (err){
-        res.send("There is something error in showing cart product");
+        throw new ExpressError(500, err);
     }
 })
 
@@ -278,7 +279,7 @@ app.get("/product/address", isLoggedIn, (req, res)=>{
             res.render('Product/addAddress.ejs', {totalCartProducts: 0})
         }
     } catch(err){
-        res.send(err);
+        throw new ExpressError(500, err);
     } 
 })
 
@@ -296,7 +297,7 @@ app.post('/address/add',  (req, res)=>{
             }
         })
     } catch(err){
-        res.send(err);
+        throw new ExpressError(500, err);
     }
 })
 
@@ -332,7 +333,7 @@ app.get("/product/:id", isLoggedIn, async (req, res)=>{
         
 
     } catch(err){
-        res.send(err);
+       throw new ExpressError(500, err);
     }
 })
 
@@ -423,7 +424,7 @@ app.get("/seller", async (req, res)=>{
     
     res.render('Seller/seller.ejs', {result: allproducts[0], orders: Object.values(groupedOrders), totalPrice: totalPrice})
     }catch(err){
-        res.send(err);
+        throw new ExpressError(500, err);
     }
 
 })
@@ -446,7 +447,7 @@ app.post("/seller/add", (req, res)=>{
                  }
             })
     }catch(err){
-        res.send(err);
+        throw new ExpressError(500, err);
     }
 })
 
@@ -464,7 +465,7 @@ app.post('/product/add/:id', isLoggedIn, (req, res)=>{
             }
         })
     } catch(err){
-        res.send("There is something error in adding product to cart using add to cart button");
+        throw new ExpressError(500, err);
     }
 })
 
@@ -482,7 +483,7 @@ app.post("/product/:id", (req, res)=>{
             }
         })
     } catch (err){
-        res.send("There is something error in add to cart");
+        throw new ExpressError(500, err);
     }
 })
 
@@ -500,7 +501,7 @@ app.delete("/product/:id", (req, res)=>{
             }
         })
     } catch(err){
-        res.send("There is something error in removing product from cart");
+        throw new ExpressError(500, err);
     }
 })
 
@@ -521,7 +522,7 @@ app.patch("/product/:id", (req, res)=>{
         })
     }
     catch (err){
-        res.send("There is something error in updating quantity of product in cart");
+        throw new ExpressError(500, err);
     }
 })
 
@@ -543,8 +544,7 @@ app.post('/product/user/signup', async (req, res)=>{
         })
         
     } catch(err){
-        res.send("There is something error in signup route");
-
+        throw new ExpressError(500, err);
     }
 })
 
@@ -560,15 +560,15 @@ app.post('/product/user/login', saveRedirectUrl, passport.authenticate('local', 
 
 
 // If any route doesn't match
-// app.all("*", (req, res, next)=>{
+// app.all('*', (req, res, next)=>{
 //     next(new ExpressError(404, "Page Not found"));
 // })
 
-// // Error handling middleware
-// app.use((err, req, res, next)=>{
-//     let {statusCode=500, message="Something went wrong!"} = err;
-//     res.send("Middleware error");
-// })
+// Error handling middleware
+app.use((err, req, res, next)=>{
+    let {statusCode=500, message="Something went wrong!"} = err;
+    res.render('error.ejs', {errorMessage: message});
+})
 
 app.listen(8080, ()=>{
     console.log("App is listening");
